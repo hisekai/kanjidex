@@ -1,0 +1,20 @@
+.button-group {
+  display: inline-block;
+  & button,
+  a {
+    display: inline;
+  }
+}
+
+button,
+.button {
+  &.is-hovered,
+  &:focus,
+  &:active,
+  &:focus:not(:active),
+  &.is-focused:not(:active) {
+    box-shadow: none;
+    border-color: $color-primary;
+    outline: none;
+  }
+}

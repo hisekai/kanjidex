@@ -1,0 +1,46 @@
+input[type="radio"],
+.tab-pane {
+  display: none;
+}
+
+/* the magic */
+#kanji:checked ~ .tab-content > .content-kanji,
+#radical:checked ~ .tab-content > .content-radical,
+#examples:checked ~ .tab-content > .content-examples {
+  display: block;
+}
+
+.tab-content {
+  height: 470px;
+  overflow-y: scroll;
+}
+
+.tabs {
+  background-color: $color-light-grey;
+  display: none;
+  font-size: 14px;
+  align-self: flex-end;
+  padding: 5px 0;
+  & > ul {
+    justify-content: space-around;
+    border-bottom: none;
+  }
+
+  & label {
+    display: block;
+    font-weight: bold;
+    & .underline {
+      @include underline(3px, 1.5px, darken($color-light-grey, 10%));
+    }
+  }
+
+}
+
+// Change color of tabs underline when checked
+#kanji:checked ~ .tabs label[for="kanji"],
+#radical:checked ~ .tabs label[for="radical"],
+#examples:checked ~ .tabs label[for="examples"] {
+  & .underline {
+    @include underline(3px, 1.5px, $color-primary);
+  }
+}

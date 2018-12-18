@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kanjidex - Vocabulary List</title>
+    <link rel="stylesheet " href="./css/style.css" />
+  </head>
+
+  <body id="vocab">
+    <div class="spinner">
+      <img class="spinner__icon" src="./assets/koi.png" alt="loading" />
+      <p>loading...</p>
+    </div>
+    <div class="container">
+      <div id="vocab-message" class="column">
+        <h1 class="title">Vocabulary list</h1>
+        <h2 class="subtitle">
+          Save kanji characters so that you can review them later!
+        </h2>
+        <div class="no-kanjis">
+          <!--
+            display here message in case there are no saved kanji characters saved
+          -->
+        </div>
+      </div>
+      <section id="display-vocab">
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <!-- if has saved kanji characters, display them here -->
+            <nav
+              id="saved-kanjis"
+              class="panel"
+              class="display__search-results"
+            >
+              <p class="panel-heading">Saved kanji characters</p>
+              <div class="panel-block panel-search">
+                <p class="control has-icons-left">
+                  <input
+                    id="search-saved-kanjis"
+                    class="input is-small"
+                    type="text"
+                    placeholder="search"
+                  />
+                </p>
+              </div>
+              <div id="list-kanjis" class="panel-body panel-results"></div>
+
+              <div class="panel-block panel-button">
+                <button
+                  class="button button-clear is-danger is-outlined is-fullwidth"
+                >
+                  clear the list
+                </button>
+              </div>
+            </nav>
+          </div>
+          <div class="columns">
+            <!-- display selected kanji character if any -->
+            <div class="column is-one-third">
+              <div class="display__kanji"></div>
+            </div>
+            <div class="column is-one-third">
+              <div class="display__radical"></div>
+            </div>
+            <div class="column is-one-third">
+              <div class="display__examples"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="./js/utils/raphael.min.js"></script>
+    <script src="./js/utils/dmak.min.js"></script>
+    <script src="./js/utils/dmakLoader.js"></script>
+    <script src="./js/vocabulary.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.display__help {
+  padding: 10px 15px;
+  margin-top: 25px;
+  & .panel-icon {
+    margin-right: 35px;
+  }
+  & .panel-footer {
+    text-align: center;
+    margin-top: 15px;
+    & a {
+      color: $color-primary;
+    }
+  }
+  & .meaning {
+    font-size: 14px;
+  }
+}

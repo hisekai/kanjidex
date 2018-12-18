@@ -1,0 +1,147 @@
+.card {
+  position: relative;
+  &-content {
+    padding: 1.4rem;
+    padding-bottom: 0;
+  }
+  height: 565px;
+  width: 350px;
+  overflow-x: hidden;
+  &__video {
+    height: 100%;
+    width: 100%;
+    max-width: 140px;
+  }
+  &__title {
+    letter-spacing: 0.5px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  &__details {
+    &__row {
+      display: block;
+    }
+
+    &__item {
+      background-color: $color-light-grey;
+      color: $color-dark-grey;
+      @extend %box-shadow;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 8px 10px;
+      font-size: 16px;
+      &--link {
+        & svg {
+          height: 18px!important;
+          margin-bottom: -3px;
+          color: $color-black;
+          transition: ease-in .2s all;
+        }
+        & a {
+          color: $color-black;
+          transition: ease-in .2s all;
+          &:hover {
+            & svg {
+              color: $color-primary;
+            }
+            color: $color-primary;
+          }
+        }
+      }
+    }
+
+    &__item--half {
+      width: 48.5%;
+    }
+
+    & span {
+      color: $color-black;
+    }
+  }
+
+  &__button-group {
+    position: absolute;
+    right: 15px;
+    width: 40px;
+    top: 45px;
+    z-index: 999;
+    
+    & > .button {
+      height: 35px;
+      width: 35px;
+      padding: 0.3em;
+      margin-bottom: 3px;
+      border-radius: 50%;
+    }
+
+    & svg {
+      height: 15px;
+      width: 15px;
+    }
+  }
+}
+
+.display {
+  &__start {
+    padding: 25px 40px;
+    text-align: center;
+    text-align: justify;
+    & > .bg-kitty {
+      display: block;
+      margin: 50px auto 30px auto;
+    }
+    & a {
+      color: $color-primary;
+      font-weight: bold;
+    }
+    & > .panel-block {
+      width: 85%;
+    }
+  }
+  &__radical {
+    .not-found {
+      text-align: center;
+      padding: 25px 40px;
+      .bg-kitty {
+        margin: 50px auto 30px auto;
+      }
+    }
+  }
+  &__examples {
+     padding: 25px 40px;
+  }
+  
+  &__search-results {
+    display: none;
+    padding: 25px;
+    background-color: white;
+    color: $color-primary;
+    font-size: 18px;
+    font-weight: bold;
+    display: none;
+    height: 91.5%;
+    width: 100%;
+    position: absolute;
+    z-index: 99;
+    text-align: center;
+    & h4 {
+      margin-bottom: 20px;
+    }
+  }
+  &__return-button {
+    display: none;
+    & button,
+    .button.is-text {
+      display: block;
+      width: 95%;
+      margin: 2px auto 8px auto;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $color-primary;
+      }
+    }
+  }
+}
