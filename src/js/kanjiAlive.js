@@ -5,7 +5,7 @@ class KanjiAlive {
 
   async getKanji(kanji) {
     try {
-      const url = `https://kanjialive-api.p.mashape.com/api/public/kanji/${kanji}`;
+      const url = `https://kanjialive-api.p.rapidapi.com/api/public/kanji/${kanji}`;
       const kanjiAliveRes = await fetch(url, {
         method: "get",
         headers: {
@@ -27,7 +27,7 @@ class KanjiAlive {
 
   async getEnglish(query) {
     try {
-      const url = `https://kanjialive-api.p.mashape.com/api/public/search/${query}`;
+      const url = `https://kanjialive-api.p.rapidapi.com/api/public/search/${query}`;
       const kanjiAliveRes = await fetch(url, {
         method: "get",
         headers: {
