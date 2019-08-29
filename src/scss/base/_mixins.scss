@@ -1,8 +1,0 @@
-@mixin underline($radius, $height, $color) {
-    border-top: $height solid $color;
-    border-bottom: $height solid $color;
-    border-top-right-radius: $radius;
-    border-top-left-radius: $radius;
-    border-bottom-right-radius: $radius;
-    border-bottom-left-radius: $radius;
-}
