@@ -3,13 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bulma": "^0.7.5",
+    "dotenv": "^8.1.0",
+    "feather-icons": "^4.24.1",
+    "nihongo": "^1.0.1",
+    "raphael": "^2.3.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-feather": "^2.0.3",
+    "react-kawaii": "^0.14.4",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "request-promise": "^4.2.4",
+    "styled-components": "^4.3.2",
+    "unofficial-jisho-api": "^2.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
