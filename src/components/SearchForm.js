@@ -13,10 +13,15 @@ const SearchForm = ({
     setQuery(e.target.value);
   };
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <form
+      id="kanjidex-form"
+      onSubmit={handleSubmit}
+      style={{ marginBottom: "20px" }}
+    >
       <div className="field has-addons">
         <p className="control is-expanded">
           <input
+            id="main-search"
             className="input is-primary"
             type="text"
             value={query}
@@ -37,7 +42,7 @@ const SearchForm = ({
           </span>
         </p>
         <p className="control">
-          <button type="submit" className="button is-primary">
+          <button type="submit" className="button is-primary button-search">
             Search
           </button>
         </p>

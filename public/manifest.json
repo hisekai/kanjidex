@@ -16,10 +16,22 @@
     "default_title": "Kanjidex",
     "default_popup": "index.html"
   },
+  "background": {
+    "scripts": ["./background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content.js"]
+    }
+  ],
   "permissions": [
     "<all_urls>",
     "*://*.jisho.org/*",
     "*://*/*",
+    "http://*/",
+    "https://*/",
     "activeTab",
     "contextMenus",
     "storage",
