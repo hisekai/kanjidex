@@ -16,15 +16,19 @@ const Home = () => {
   const [mood, setMood] = useState("happy");
   const handleSubmit = async e => {
     e.preventDefault();
-    search(
-      queryType,
-      setError,
-      setMood,
-      setLoading,
-      setKanji,
-      setPhrase,
-      query
-    );
+    if (query) {
+      search(
+        queryType,
+        setError,
+        setMood,
+        setLoading,
+        setKanji,
+        setPhrase,
+        query
+      );
+    } else {
+      setError("Sorry, but you haven't entered anything!");
+    }
   };
   const handleQueryType = value => {
     setQueryType(value);
@@ -49,19 +53,20 @@ const Home = () => {
         window.onload = async function(e) {
           if (selection) {
             const selectedText = selection[0];
-            const input = document.getElementById("main-search");
-            input.setAttribute("value", selection[0]);
-            input.focus();
-            console.log("getting data");
-            search(
-              queryType,
-              setError,
-              setMood,
-              setLoading,
-              setKanji,
-              setPhrase,
-              selectedText
-            );
+            if (selectedText.length > 0) {
+              const input = document.getElementById("main-search");
+              input.setAttribute("value", selection[0]);
+              input.focus();
+              search(
+                queryType,
+                setError,
+                setMood,
+                setLoading,
+                setKanji,
+                setPhrase,
+                selectedText
+              );
+            }
           }
         };
       }
@@ -89,7 +94,12 @@ const Home = () => {
         />
       )}
       {!loading && queryType === "phrase" && (
-        <DisplayPhrase phrase={phrase} mood={mood} error={error} />
+        <DisplayPhrase
+          phrase={phrase}
+          mood={mood}
+          error={error}
+          setPhrase={setPhrase}
+        />
       )}
       {!loading && queryType === "english" && (
         <DisplayKanji

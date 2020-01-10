@@ -2,9 +2,6 @@ import jishoAPI from "unofficial-jisho-api";
 import rp from "request-promise";
 const jisho = new jishoAPI();
 
-// TODO: cleanup code for production
-// process.env.NODE_ENV !== 'production'
-
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 let proxy;

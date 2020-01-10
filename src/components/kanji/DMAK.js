@@ -37,8 +37,8 @@ const StyledDMAK = styled.div`
     max-width: 100px;
   }
   button:hover span {
-    color: ${Colors.main};
-    transition: all 0.3s ease-in-out;
+    color: ${Colors.dimWhite};
+    transition: all 0.1s ease-in-out;
   }
 `;
 
@@ -72,37 +72,52 @@ export const DMAK = props => {
     return (
       <StyledDMAK>
         <div id="draw-kanji">{/* */}</div>
-        <div className="field has-addons ">
+        <div className="field has-addons">
           <p className="control ">
-            <button className="button is-medium" onClick={handleBack}>
+            <button
+              className="button is-medium is-primary is-outlined"
+              onClick={handleBack}
+            >
               <span className="icon">
                 <SkipBack />
               </span>
             </button>
           </p>
           <p className="control">
-            <button className="button is-medium" onClick={handlePause}>
+            <button
+              className="button is-medium is-primary is-outlined"
+              onClick={handlePause}
+            >
               <span className="icon">
                 <Pause />
               </span>
             </button>
           </p>
           <p className="control">
-            <button className="button is-medium" onClick={handlePlay}>
+            <button
+              className="button is-medium is-primary is-outlined"
+              onClick={handlePlay}
+            >
               <span className="icon">
                 <Play />
               </span>
             </button>
           </p>
           <p className="control">
-            <button className="button is-medium" onClick={handleNext}>
+            <button
+              className="button is-medium is-primary is-outlined"
+              onClick={handleNext}
+            >
               <span className="icon">
                 <SkipForward />
               </span>
             </button>
           </p>
           <p className="control">
-            <button className="button is-medium" onClick={handleReset}>
+            <button
+              className="button is-medium is-primary is-outlined"
+              onClick={handleReset}
+            >
               <span className="icon">
                 <RotateCcw />
               </span>

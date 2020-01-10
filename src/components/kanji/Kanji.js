@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Level from "../layout/Level";
 import { DMAK } from "./DMAK";
 import { ExternalLink } from "react-feather";
-import { Colors } from "../../helpers/theme";
+import styled from "styled-components";
+
+const StyledTitle = styled.div`
+  @media (min-width: 400px) {
+    .title.is-5 {
+      margin: 30px;
+    }
+  }
+`;
 const Kanji = ({ kanji }) => {
-  const [visible, setVisible] = useState(false);
-  const handleClick = e => {
-    e.preventDefault();
-    setVisible(!visible);
-  };
   useEffect(() => {}, [kanji]);
   return (
-    <div className="Kanji">
+    <div className="Kanji" style={{ paddingBottom: "60px" }}>
       <DMAK kanji={kanji.query} />
-      <h2 className="title is-4" style={{ textAlign: "center" }}>
-        {kanji.meaning}
-      </h2>
+      <StyledTitle>
+        <h2 className="title is-5" style={{ textAlign: "center" }}>
+          {kanji.meaning ? kanji.meaning : "not found"}
+        </h2>
+      </StyledTitle>
       <Level>
         <div className="level-left">
           <div className="level-item">
             <p>
               <strong>Strokes: </strong>
-              {kanji.strokeCount}
+              {kanji.strokeCount ? kanji.strokeCount : "not found"}
             </p>
           </div>
         </div>
@@ -31,7 +36,7 @@ const Kanji = ({ kanji }) => {
               <strong>
                 <abbr title="Japanese-Language Proficiency Test">JLPT</abbr> :{" "}
               </strong>{" "}
-              {kanji.jlptLevel}
+              {kanji.jlptLevel ? kanji.jlptLevel : "not found"}
             </p>
           </div>
         </div>
@@ -41,9 +46,11 @@ const Kanji = ({ kanji }) => {
           <p>
             <strong>Onyomi:</strong>
             {kanji.onyomi
-              .map(on => JSON.stringify(on))
-              .join(", ")
-              .replace(/"/g, "")}{" "}
+              ? kanji.onyomi
+                  .map(on => JSON.stringify(on))
+                  .join(", ")
+                  .replace(/"/g, "")
+              : "not found"}
           </p>
         </div>
       </Level>
@@ -52,70 +59,30 @@ const Kanji = ({ kanji }) => {
           <p>
             <strong>Kunyomi:</strong>
             {kanji.kunyomi
-              .map(kun => JSON.stringify(kun))
-              .join(", ")
-              .replace(/"/g, "")}
+              ? kanji.kunyomi
+                  .map(kun => JSON.stringify(kun))
+                  .join(", ")
+                  .replace(/"/g, "")
+              : "not found"}
           </p>
         </div>
       </Level>
-      <Level>
-        <div className="level-item">
-          <a target="_blank" rel="noopener noreferrer" href={kanji.uri}>
-            <strong>
-              View on Jisho.org <ExternalLink />
-            </strong>
-          </a>
-        </div>
-      </Level>
-
-      <div className="more-details">
-        <p className="has-text-centered" style={{ margin: "10px 0" }}>
-          <a
-            className="is-link"
-            href="/"
-            style={{ color: Colors.main }}
-            onClick={handleClick}
-          >
-            {!visible ? "View more" : "View less"}
-          </a>
-        </p>
-        {visible && (
-          <React.Fragment>
-            <Level>
-              <div className="level-left">
-                <div className="level-item">
-                  <p>
-                    <strong>Taught in: </strong>
-                    {kanji.taughtIn}
-                  </p>
-                </div>
-              </div>
-              <div className="level-right">
-                <div className="level-item">
-                  <p>
-                    <strong>
-                      <abbr title="Newspaper Frequency Rank">NFR</abbr> :{" "}
-                    </strong>{" "}
-                    {kanji.newspaperFrequencyRank}
-                  </p>
-                </div>
-              </div>
-            </Level>
-            <Level>
-              <div className="level-item">
-                <p>
-                  <strong>Parts: </strong> {kanji.parts.join(", ")}
-                </p>
-              </div>
-            </Level>
-            <Level>
-              <div className="level-item">
-                <img src={kanji.strokeOrderDiagramUri} alt={kanji.meaning} />
-              </div>
-            </Level>
-          </React.Fragment>
-        )}
-      </div>
+      {kanji.uri && (
+        <Level>
+          <div className="level-item">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={kanji.uri}
+              className="has-text-primary"
+            >
+              <strong>
+                View on Jisho.org <ExternalLink />
+              </strong>
+            </a>
+          </div>
+        </Level>
+      )}
     </div>
   );
 };

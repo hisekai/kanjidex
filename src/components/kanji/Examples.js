@@ -40,7 +40,6 @@ const Examples = ({ examples }) => {
     let audioIcon = e.target.parentElement.parentElement.parentElement.querySelector(
       ".level-icon"
     );
-    //TODO: don't change the DOM directly, find a better way
     audioIcon.innerHTML = `${feather.icons.loader.toSvg()}`;
     audioFile.play();
     audioFile.addEventListener("ended", () => {
@@ -48,7 +47,7 @@ const Examples = ({ examples }) => {
     });
   };
   return examples ? (
-    <StyledExamples>
+    <StyledExamples style={{ paddingBottom: "60px", paddingTop: "20px" }}>
       {!examples.results
         ? examples.map((example, index) => {
             return (

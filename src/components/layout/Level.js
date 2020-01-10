@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../../helpers/theme";
 
 const StyledLevel = styled.div`
   .level-item {
@@ -33,8 +32,7 @@ const StyledLevel = styled.div`
   }
 
   a:hover {
-    color: ${Colors.main}
-    transition: all .3s ease-in;
+    transition: all 0.3s ease-in;
   }
 
   span {

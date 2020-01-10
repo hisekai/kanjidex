@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import nihongo from "nihongo";
 import KanjiDetails from "./kanji/KanjiDetails";
+import KanjiActions from "./kanji/KanjiActions";
 import { getKanji } from "../helpers/getKanji";
 import { Colors } from "./../helpers/theme";
-import { ArrowLeft } from "react-feather";
 
 const StyledPhrase = styled.div`
+  padding: 0 10px;
   .Phrase-single .Phrase-slug {
     display: flex;
     flex-direction: column;
@@ -53,10 +54,11 @@ const StyledPhrase = styled.div`
   }
 `;
 
-const Phrase = ({ phrase }) => {
+const Phrase = ({ phrase, setPhrase }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [kanji, setKanji] = useState();
-  const handleView = () => {
+  const handleView = e => {
+    e.preventDefault();
     setIsVisible(!isVisible);
   };
   const handleClick = async e => {
@@ -64,7 +66,11 @@ const Phrase = ({ phrase }) => {
     const selectedKanji = e.target.innerHTML;
     const data = await getKanji(selectedKanji);
     setKanji(data);
-    handleView();
+    handleView(e);
+  };
+  const handleClear = e => {
+    e.preventDefault();
+    setPhrase([]);
   };
   return (
     <React.Fragment>
@@ -72,6 +78,13 @@ const Phrase = ({ phrase }) => {
         className="Phrase"
         style={{ display: !isVisible ? "none" : "block" }}
       >
+        <button
+          className="button is-fullwidth is-danger"
+          style={{ paddingBottom: "10px" }}
+          onClick={e => handleClear(e)}
+        >
+          Clear All
+        </button>
         {phrase.map((p, index) => {
           return (
             <div key={index} className="Phrase-single">
@@ -105,7 +118,7 @@ const Phrase = ({ phrase }) => {
                     .map((kanji, index) => (
                       <a
                         key={index}
-                        onClick={handleClick}
+                        onClick={e => handleClick(e)}
                         href="/"
                         className="is-link"
                         lang="ja"
@@ -121,10 +134,10 @@ const Phrase = ({ phrase }) => {
         })}
       </StyledPhrase>
 
-      <div style={{ display: isVisible ? "none" : "block" }}>
-        <button className="button is-fullwidth" onClick={handleView}>
-          <ArrowLeft /> Go back to results
-        </button>
+      <div
+        style={{ display: isVisible ? "none" : "block", position: "relative" }}
+      >
+        <KanjiActions handleView={handleView} />
         <KanjiDetails kanji={kanji} />
       </div>
     </React.Fragment>

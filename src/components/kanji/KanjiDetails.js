@@ -5,13 +5,20 @@ import Examples from "./Examples";
 import Info from "../layout/Info";
 import KawaiiCat from "../KawaiiCat";
 import styled from "styled-components";
+import { Colors } from "../../helpers/theme";
 
 const StyledKanjiDetails = styled.div`
   .tabs {
     flex-direction: column;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+    height: 60px;
+    max-width: 648px;
   }
   .tabs-content {
-    height: 580px;
+    height: 530px;
     overflow-y: auto;
     ::-webkit-scrollbar {
       height: 15px;
@@ -36,6 +43,32 @@ const StyledKanjiDetails = styled.div`
   .tabs ul {
     border-bottom: none;
     margin-top: 20px;
+  }
+
+  .tabs li {
+    position: relative;
+    margin: 0 5px;
+    font-weight: 700;
+    & a {
+      &:before {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background-color: ${Colors.extraLightGrey};
+        display: block;
+        border-radius: 3px;
+      }
+    }
+    &.is-active {
+      a {
+        color: ${Colors.green}
+        &:before {
+          background-color: ${Colors.green}
+        }
+      }
+    }
   }
 
   @keyframes fadeEffect {

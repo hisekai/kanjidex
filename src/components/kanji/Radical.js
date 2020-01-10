@@ -19,11 +19,25 @@ const StyledRadical = styled.div`
       justify-content: center;
     }
     .icon:hover {
-      color: ${Colors.main};
+      color: ${Colors.dimWhite};
     }
   }
   .level img {
     vertical-align: initial;
+  }
+  .level:last-child {
+    margin-top: -1.5rem;
+  }
+  .title.is-5 {
+    margin-bottom: 0px;
+  }
+  @media (min-width: 400px) {
+    .title.is-5 {
+      margin-bottom: 30px;
+    }
+    .level:last-child {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -45,7 +59,7 @@ const Radical = ({ radical, radicalAlt }) => {
         <div className="field has-addons">
           <p className="control ">
             <button
-              className="button is-medium"
+              className="button is-medium is-primary is-outlined"
               onClick={() => handleClick(-1)}
             >
               <span className="icon">
@@ -55,7 +69,7 @@ const Radical = ({ radical, radicalAlt }) => {
           </p>
           <p className="control">
             <button
-              className="button is-medium"
+              className="button is-medium is-primary is-outlined"
               onClick={() => handleClick(+1)}
             >
               <span className="icon">
@@ -65,7 +79,7 @@ const Radical = ({ radical, radicalAlt }) => {
           </p>
         </div>
       </div>
-      <h2 className="title is-4" style={{ textAlign: "center" }}>
+      <h2 className="title is-5" style={{ textAlign: "center" }}>
         {radical.meaning.english}
       </h2>
       {radicalAlt && (

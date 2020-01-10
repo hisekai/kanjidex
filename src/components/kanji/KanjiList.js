@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Level from "../layout/Level";
 import KanjiDetails from "./KanjiDetails";
 import styled from "styled-components";
-import { Delete, Eye, ArrowLeft } from "react-feather";
+import { Delete, Eye } from "react-feather";
+import KanjiActions from "./KanjiActions";
 
 const StyledKanjiList = styled.div`
   position: relative;
+  margin-top: 30px;
   span {
     color: black;
   }
@@ -38,15 +40,20 @@ const KanjiList = ({ kanjis, deleteKanji }) => {
   const handleView = e => {
     e.preventDefault();
     setIsVisible(!isVisible);
-    const item = e.target.parentElement.parentElement.parentElement.querySelector(
-      ".kanji"
-    ).innerHTML;
-    kanjis.map(kanji => {
-      if (kanji.kanji.query === item) {
-        setSelectedKanji(kanji);
-      }
-      return kanji;
-    });
+
+    if (
+      e.target.parentElement.parentElement.parentElement.querySelector(".kanji")
+    ) {
+      const item = e.target.parentElement.parentElement.parentElement.querySelector(
+        ".kanji"
+      ).innerHTML;
+      kanjis.map(kanji => {
+        if (kanji.kanji.query === item) {
+          setSelectedKanji(kanji);
+        }
+        return kanji;
+      });
+    }
   };
   return (
     <React.Fragment>
@@ -71,10 +78,11 @@ const KanjiList = ({ kanjis, deleteKanji }) => {
           );
         })}
       </StyledKanjiList>
-      <div style={{ display: isVisible ? "none" : "block" }}>
-        <button className="button is-fullwidth" onClick={handleView}>
-          <ArrowLeft /> Go back to results
-        </button>
+      {/* div for displaying the return button and save to deck button */}
+      <div
+        style={{ display: isVisible ? "none" : "block", position: "relative" }}
+      >
+        <KanjiActions handleView={handleView} />
         <KanjiDetails kanji={selectedKanji} />
       </div>
     </React.Fragment>

@@ -77,6 +77,7 @@ export const search = async (
           } else {
             setError("Unfortunately, there is no data for this search.");
             setMood("sad");
+            setLoading(false);
           }
         }
       });
