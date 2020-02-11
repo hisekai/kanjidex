@@ -20,22 +20,6 @@ const StyledKanjiDetails = styled.div`
   .tabs-content {
     height: 530px;
     overflow-y: auto;
-    ::-webkit-scrollbar {
-      height: 15px;
-      width: 15px;
-      background: #f2f2f2;
-    }
-
-    ::-webkit-scrollbar-corner {
-      background: #f2f2f2;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #eb5757;
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-      -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-    }
   }
   .tabs-content-inner {
     animation: fadeEffect 1s;

@@ -22,7 +22,7 @@ const DisplayKanji = ({ kanji, deleteKanji, queryType, mood, error }) => {
       {Object.keys(kanji).length ? (
         "kanji" in kanji ? (
           <div style={{ position: "relative" }}>
-            <KanjiActions handleView={handleView} />
+            <KanjiActions handleView={handleView} kanji={kanji} />
             <KanjiDetails kanji={kanji} />
           </div>
         ) : (

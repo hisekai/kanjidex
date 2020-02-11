@@ -33,7 +33,7 @@ const StyledRadical = styled.div`
   }
   @media (min-width: 400px) {
     .title.is-5 {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     .level:last-child {
       margin-top: 0;

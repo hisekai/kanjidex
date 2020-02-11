@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import CreatableSelect from "react-select/creatable";
 import { ArrowLeft, BookOpen } from "react-feather";
 import { Colors } from "../../helpers/theme";
+import { VocabContext } from "./../../contexts/VocabContext";
+import uuid from "uuid/v4";
 
 const StyledKanjiActions = styled.div`
   background-color: #fff;
@@ -20,15 +23,53 @@ const StyledKanjiActions = styled.div`
     margin: 10px;
     svg {
       margin: 5px;
+      margin-top: 10px;
       color: ${Colors.green};
     }
   }
+  button {
+    min-height: 40px;
+  }
+  .control > div > div {
+    min-height: 40px;
+    border-radius: 0;
+  }
 `;
 
-const KanjiActions = ({ handleView }) => {
+const KanjiActions = ({ handleView, kanji }) => {
+  const { decks, dispatch } = useContext(VocabContext);
+  const options = decks.map(deck => {
+    return { value: deck.id, label: deck.title };
+  });
+  const [option, setOption] = useState(null);
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newDeckId = uuid();
+    if (option.__isNew__) {
+      dispatch({
+        type: "ADD_DECK",
+        deck: { title: option.label, id: newDeckId }
+      });
+      dispatch({
+        type: "ADD_KANJI",
+        deck: { id: newDeckId, kanji }
+      });
+    } else {
+      dispatch({
+        type: "ADD_KANJI",
+        deck: { id: option.value, kanji }
+      });
+    }
+  };
+  const handleInputChange = inputValue => {
+    if (inputValue) {
+      setOption({ label: inputValue, value: null });
+    }
+  };
+  useEffect(() => {}, [decks, kanji]);
   return (
     <StyledKanjiActions className="actions">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="field has-addons">
           <div className="control">
             <button
@@ -39,17 +80,12 @@ const KanjiActions = ({ handleView }) => {
             </button>
           </div>
           <div className="control is-expanded" style={{ minWidth: "180px" }}>
-            <input
-              type="text"
-              className="input is-primary"
-              name="city"
-              list="decks"
+            <CreatableSelect
+              isClearable
+              onChange={option => setOption(option)}
+              onInputChange={e => handleInputChange(e)}
+              options={options}
             />
-            <datalist id="decks">
-              <option value="Travel" />
-              <option value="Food" />
-              <option value="Animals" />
-            </datalist>
           </div>
           <div className="control">
             <button type="submit" className="button is-primary">

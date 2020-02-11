@@ -82,7 +82,7 @@ const KanjiList = ({ kanjis, deleteKanji }) => {
       <div
         style={{ display: isVisible ? "none" : "block", position: "relative" }}
       >
-        <KanjiActions handleView={handleView} />
+        <KanjiActions handleView={handleView} kanji={selectedKanji} />
         <KanjiDetails kanji={selectedKanji} />
       </div>
     </React.Fragment>
