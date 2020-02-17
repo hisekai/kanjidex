@@ -1,4 +1,10 @@
 import uuid from "uuid/v4";
+import {
+  savedNotification,
+  alreadySavedNotification,
+  deletedNotification,
+  removedAllNotification
+} from "../helpers/Notification";
 
 export const vocabReducer = (state, action) => {
   switch (action.type) {
@@ -21,9 +27,16 @@ export const vocabReducer = (state, action) => {
           // check if the kanji already exists in that particular deck
           let count = 0;
           deck.kanjis.map(kanji => {
-            if (kanji.kanji.query === action.deck.kanji) return (count += 1);
+            return kanji.kanji.query === action.deck.kanji.kanji.query
+              ? (count += 1)
+              : count;
           });
-          if (!count > 0) deck.kanjis.push(action.deck.kanji);
+          if (!count > 0) {
+            deck.kanjis.push(action.deck.kanji);
+            savedNotification();
+          } else {
+            alreadySavedNotification();
+          }
           return deck;
         }
         return deck;
@@ -31,6 +44,7 @@ export const vocabReducer = (state, action) => {
     case "REMOVE_KANJI":
       return state.map(deck => {
         if (deck.id === action.deck.id) {
+          deletedNotification();
           return {
             ...deck,
             kanjis: deck.kanjis.filter(
@@ -43,6 +57,7 @@ export const vocabReducer = (state, action) => {
     case "REMOVE_ALL_KANJI":
       return state.map(deck => {
         if (deck.id === action.deck.id) {
+          removedAllNotification();
           return {
             ...deck,
             kanjis: []
