@@ -29,5 +29,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: "src/themes/kanjidex.css", to: "static/themes" }
     ])
-  ]
+  ],
+  performance: {
+    hints: false
+  }
 };

@@ -54,7 +54,7 @@ const Navbar = () => {
           <div className="navbar-start is-flex-touch">
             <NavLink
               exact
-              to="kanjidex"
+              to="/kanjidex/kanjidex"
               activeClassName="active"
               className="navbar-item"
             >
