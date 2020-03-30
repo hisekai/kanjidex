@@ -4,7 +4,14 @@ import KawaiiCat from "../KawaiiCat";
 import Info from "../layout/Info";
 
 const DisplayPhrase = ({ phrase, mood, error, setPhrase }) => {
-  return (
+  return error ? (
+    <div className="has-text-centered">
+      <KawaiiCat mood={mood} />
+      <Info>
+        <p>{error}</p>
+      </Info>
+    </div>
+  ) : (
     <React.Fragment>
       {phrase.length >= 1 ? (
         <Phrase phrase={phrase} setPhrase={setPhrase} />

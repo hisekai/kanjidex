@@ -63,24 +63,29 @@ export const search = async (
     } else {
       let tempArray = [];
       setLoading(true);
-      const englishData = await getEnglish(q.toLowerCase());
-      englishData.forEach(async kanji => {
-        const data = await getKanji(kanji.kanji.character);
-        tempArray.push(data);
-        if (tempArray.length === englishData.length) {
-          if (tempArray.length === 1) {
-            setKanji(tempArray[0]);
-            setLoading(false);
-          } else if (tempArray.length > 1) {
-            setKanji(tempArray);
-            setLoading(false);
-          } else {
-            setError("Unfortunately, there is no data for this search.");
-            setMood("sad");
-            setLoading(false);
-          }
+      const englishData = await getEnglish(q);
+      setTimeout(() => {
+        if (englishData.length === 0) {
+          setError("Unfortunately, there is no data for this search.");
+          setMood("sad");
+          setLoading(false);
+        } else {
+          englishData.forEach(async kanji => {
+            const data = await getKanji(kanji.kanji.character);
+            tempArray.push(data);
+            if (tempArray.length === englishData.length) {
+              setError();
+              if (tempArray.length === 1) {
+                setKanji(tempArray[0]);
+                setLoading(false);
+              } else if (tempArray.length > 1) {
+                setKanji(tempArray);
+                setLoading(false);
+              }
+            }
+          });
         }
-      });
+      }, 4000);
     }
   }
 };

@@ -37,40 +37,36 @@ const Home = () => {
   const deleteKanji = item => {
     setKanji(kanji.filter(kanji => kanji.kanji.query !== item));
   };
-  useEffect(() => {
-    setMood("happy");
-  }, [kanji, phrase, error]);
+  useEffect(() => {}, [kanji, phrase, error]);
 
   // chrome specific
   // when user selects text upon browser action
   // immediately start search for the selection
   if (process.env.NODE_ENV === "production") {
-    chrome.tabs.executeScript(
-      {
-        code: "window.getSelection().toString();"
-      },
-      function(selection) {
-        window.onload = async function(e) {
-          if (selection) {
-            const selectedText = selection[0];
-            if (selectedText.length > 0) {
-              const input = document.getElementById("main-search");
-              input.setAttribute("value", selection[0]);
-              input.focus();
-              search(
-                queryType,
-                setError,
-                setMood,
-                setLoading,
-                setKanji,
-                setPhrase,
-                selectedText
-              );
-            }
-          }
-        };
-      }
-    );
+    window.addEventListener("load", e => {
+      console.log("loaded popup");
+      chrome.tabs.executeScript(
+        {
+          code: "window.getSelection().toString();"
+        },
+        function(selection) {
+          const selectedText = selection[0];
+          console.log(selectedText);
+          const input = document.getElementById("main-search");
+          input.setAttribute("value", selectedText);
+          input.focus();
+          search(
+            queryType,
+            setError,
+            setMood,
+            setLoading,
+            setKanji,
+            setPhrase,
+            selectedText
+          );
+        }
+      );
+    });
   }
 
   return (
@@ -87,6 +83,7 @@ const Home = () => {
       {!loading && queryType === "kanji" && (
         <DisplayKanji
           kanji={kanji}
+          setKanji={setKanji}
           deleteKanji={deleteKanji}
           queryType={queryType}
           mood={mood}

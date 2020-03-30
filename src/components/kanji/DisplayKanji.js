@@ -5,10 +5,16 @@ import KawaiiCat from "../KawaiiCat";
 import Info from "../layout/Info";
 import KanjiActions from "./KanjiActions";
 
-const DisplayKanji = ({ kanji, deleteKanji, queryType, mood, error }) => {
-  const [reset, setReset] = useState(false);
+const DisplayKanji = ({
+  kanji,
+  setKanji,
+  deleteKanji,
+  queryType,
+  mood,
+  error
+}) => {
   const handleView = () => {
-    setReset(true);
+    setKanji([]);
   };
   return error ? (
     <div className="has-text-centered">
@@ -28,7 +34,7 @@ const DisplayKanji = ({ kanji, deleteKanji, queryType, mood, error }) => {
         ) : (
           <KanjiList kanjis={kanji} deleteKanji={deleteKanji} />
         )
-      ) : queryType === "kanji" || reset === "true" ? (
+      ) : queryType === "kanji" ? (
         <div className="has-text-centered">
           <KawaiiCat mood={mood} />
           <Info>

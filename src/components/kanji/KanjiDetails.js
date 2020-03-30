@@ -14,7 +14,7 @@ const StyledKanjiDetails = styled.div`
     width: 100%;
     bottom: 0;
     background-color: white;
-    height: 60px;
+    height: 40px;
     max-width: 648px;
   }
   .tabs-content {
@@ -26,7 +26,6 @@ const StyledKanjiDetails = styled.div`
   }
   .tabs ul {
     border-bottom: none;
-    margin-top: 20px;
   }
 
   .tabs li {

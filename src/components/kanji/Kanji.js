@@ -14,7 +14,7 @@ const StyledTitle = styled.div`
 const Kanji = ({ kanji }) => {
   useEffect(() => {}, [kanji]);
   return (
-    <div className="Kanji" style={{ paddingBottom: "60px" }}>
+    <div className="Kanji" style={{ paddingBottom: "40px" }}>
       <DMAK kanji={kanji.query} />
       <StyledTitle>
         <h2 className="title is-5" style={{ textAlign: "center" }}>

@@ -16,6 +16,12 @@ const StyledKanjiActions = styled.div`
   max-width: 655px;
   padding: 10px;
   z-index: 999;
+  #back {
+    position: absolute;
+    left: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
   form {
     max-width: 80%;
   }
@@ -69,16 +75,15 @@ const KanjiActions = ({ handleView, kanji }) => {
   useEffect(() => {}, [decks, kanji]);
   return (
     <StyledKanjiActions className="actions">
+      <button
+        id="back"
+        className="button is-primary is-outlined"
+        onClick={e => handleView(e)}
+      >
+        <ArrowLeft />{" "}
+      </button>
       <form onSubmit={handleSubmit}>
-        <div className="field has-addons">
-          <div className="control">
-            <button
-              className="button is-primary is-outlined"
-              onClick={e => handleView(e)}
-            >
-              <ArrowLeft />{" "}
-            </button>
-          </div>
+        <div className="field has-addons" style={{ marginLeft: "40px" }}>
           <div className="control is-expanded" style={{ minWidth: "180px" }}>
             <CreatableSelect
               isClearable
