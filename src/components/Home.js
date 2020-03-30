@@ -44,26 +44,26 @@ const Home = () => {
   // immediately start search for the selection
   if (process.env.NODE_ENV === "production") {
     window.addEventListener("load", e => {
-      console.log("loaded popup");
       chrome.tabs.executeScript(
         {
           code: "window.getSelection().toString();"
         },
         function(selection) {
           const selectedText = selection[0];
-          console.log(selectedText);
-          const input = document.getElementById("main-search");
-          input.setAttribute("value", selectedText);
-          input.focus();
-          search(
-            queryType,
-            setError,
-            setMood,
-            setLoading,
-            setKanji,
-            setPhrase,
-            selectedText
-          );
+          if (selectedText) {
+            const input = document.getElementById("main-search");
+            input.setAttribute("value", selectedText);
+            input.focus();
+            search(
+              queryType,
+              setError,
+              setMood,
+              setLoading,
+              setKanji,
+              setPhrase,
+              selectedText
+            );
+          }
         }
       );
     });
@@ -101,6 +101,7 @@ const Home = () => {
       {!loading && queryType === "english" && (
         <DisplayKanji
           kanji={kanji}
+          setKanji={setKanji}
           deleteKanji={deleteKanji}
           queryType={queryType}
           mood={mood}
