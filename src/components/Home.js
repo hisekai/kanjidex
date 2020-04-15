@@ -14,7 +14,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [mood, setMood] = useState("happy");
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (query) {
       search(
@@ -30,12 +30,12 @@ const Home = () => {
       setError("Sorry, but you haven't entered anything!");
     }
   };
-  const handleQueryType = value => {
+  const handleQueryType = (value) => {
     setQueryType(value);
     setError("");
   };
-  const deleteKanji = item => {
-    setKanji(kanji.filter(kanji => kanji.kanji.query !== item));
+  const deleteKanji = (item) => {
+    setKanji(kanji.filter((kanji) => kanji.kanji.query !== item));
   };
   useEffect(() => {}, [kanji, phrase, error]);
 
@@ -43,12 +43,12 @@ const Home = () => {
   // when user selects text upon browser action
   // immediately start search for the selection
   if (process.env.NODE_ENV === "production") {
-    window.addEventListener("load", e => {
+    window.addEventListener("load", (e) => {
       chrome.tabs.executeScript(
         {
-          code: "window.getSelection().toString();"
+          code: "window.getSelection().toString();",
         },
-        function(selection) {
+        function (selection) {
           const selectedText = selection[0];
           if (selectedText) {
             const input = document.getElementById("main-search");
@@ -94,6 +94,7 @@ const Home = () => {
         <DisplayPhrase
           phrase={phrase}
           mood={mood}
+          setMood={setMood}
           error={error}
           setPhrase={setPhrase}
         />

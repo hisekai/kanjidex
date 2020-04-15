@@ -12,9 +12,8 @@ const VocabularyList = ({ mood }) => {
   const indexOfLastDeck = currentPage * decksPerPage;
   const indexOfFirstDeck = indexOfLastDeck - decksPerPage;
   const currentDecks = decks.slice(indexOfFirstDeck, indexOfLastDeck);
-
   // change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return decks.length ? (
     <div className="has-text-centered" style={{ padding: "40px" }}>
       <h2 className="is-size-4">Saved Vocabulary Decks</h2>
@@ -26,16 +25,25 @@ const VocabularyList = ({ mood }) => {
       <div className="container">
         <div className="columns is-multiline">
           {currentDecks &&
-            currentDecks.map(deck => {
-              return <Deck key={deck.id} deck={deck} />;
+            currentDecks.map((deck) => {
+              return (
+                <Deck
+                  key={deck.id}
+                  deck={deck}
+                  totalDecks={decks.length}
+                  decksPerPage={decksPerPage}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              );
             })}
-          <Pagination
-            decksPerPage={decksPerPage}
-            totalDecks={decks.length}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
         </div>
+        <Pagination
+          decksPerPage={decksPerPage}
+          totalDecks={decks.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   ) : (

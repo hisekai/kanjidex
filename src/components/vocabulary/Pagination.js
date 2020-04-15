@@ -4,7 +4,7 @@ export const Pagination = ({
   decksPerPage,
   totalDecks,
   paginate,
-  currentPage
+  currentPage,
 }) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalDecks / decksPerPage); i++) {
@@ -17,21 +17,22 @@ export const Pagination = ({
       aria-label="pagination"
     >
       <ul className="pagination-list">
-        {pageNumbers.map(number => (
-          <li key={number}>
-            <button
-              onClick={() => paginate(number)}
-              className={
-                currentPage === number
-                  ? "button is-primary pagination-link"
-                  : "button is-primary is-outlined pagination-link"
-              }
-              aria-label={`Got to page ${number}`}
-            >
-              {number}
-            </button>
-          </li>
-        ))}
+        {pageNumbers.length > 1 &&
+          pageNumbers.map((number) => (
+            <li key={number}>
+              <button
+                onClick={() => paginate(number)}
+                className={
+                  currentPage === number
+                    ? "button is-primary pagination-link"
+                    : "button is-primary is-outlined pagination-link"
+                }
+                aria-label={`Got to page ${number}`}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
       </ul>
     </nav>
   );

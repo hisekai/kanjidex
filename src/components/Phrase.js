@@ -54,23 +54,24 @@ const StyledPhrase = styled.div`
   }
 `;
 
-const Phrase = ({ phrase, setPhrase }) => {
+const Phrase = ({ phrase, setPhrase, setMood }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [kanji, setKanji] = useState();
-  const handleView = e => {
+  const handleView = (e) => {
     e.preventDefault();
     setIsVisible(!isVisible);
   };
-  const handleClick = async e => {
+  const handleClick = async (e) => {
     e.preventDefault();
     const selectedKanji = e.target.innerHTML;
     const data = await getKanji(selectedKanji);
     setKanji(data);
     handleView(e);
   };
-  const handleClear = e => {
+  const handleClear = (e) => {
     e.preventDefault();
     setPhrase([]);
+    setMood("happy");
   };
   return (
     <React.Fragment>
@@ -81,7 +82,7 @@ const Phrase = ({ phrase, setPhrase }) => {
         <button
           className="button is-fullwidth is-danger"
           style={{ paddingBottom: "10px" }}
-          onClick={e => handleClear(e)}
+          onClick={(e) => handleClear(e)}
         >
           Clear All
         </button>
@@ -118,7 +119,7 @@ const Phrase = ({ phrase, setPhrase }) => {
                     .map((kanji, index) => (
                       <a
                         key={index}
-                        onClick={e => handleClick(e)}
+                        onClick={(e) => handleClick(e)}
                         href="/"
                         className="is-link"
                         lang="ja"

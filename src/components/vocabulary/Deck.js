@@ -11,9 +11,20 @@ const StyledDeck = styled.div`
   footer svg {
     margin-left: 8px;
   }
+  #editVocabForm {
+    .control {
+      min-width: 98%;
+    }
+  }
 `;
 
-const Deck = ({ deck }) => {
+const Deck = ({
+  deck,
+  totalDecks,
+  decksPerPage,
+  currentPage,
+  setCurrentPage,
+}) => {
   const [isEditable, setIsEditable] = useState(false);
   const [title, setTitle] = useState("");
   const { dispatch } = useContext(VocabContext);
@@ -23,36 +34,45 @@ const Deck = ({ deck }) => {
   };
   const handleDelete = () => {
     dispatch({ type: "DELETE_DECK", id: deck.id });
+    // after deleting the last deck on the page
+    // get the previous page
+    if (totalDecks % decksPerPage === 1) {
+      setCurrentPage(currentPage !== 1 ? currentPage - 1 : currentPage);
+    }
   };
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsEditable(!isEditable);
-    dispatch({
-      type: "UPDATE_DECK",
-      deck: {
-        id: deck.id,
-        title
-      }
-    });
+    if (title.length > 1) {
+      dispatch({
+        type: "UPDATE_DECK",
+        deck: {
+          id: deck.id,
+          title,
+        },
+      });
+    }
   };
+
   return (
     <div className="column is-4">
       <StyledDeck className="Deck card">
         <header className="card-header">
           {isEditable ? (
-            <form onSubmit={handleSubmit}>
+            // form for editing
+            <form id="editVocabForm" onSubmit={handleSubmit}>
               <div className="field has-addons">
-                <div className="control">
+                <div className="control is-fullwidth">
                   <input
-                    className="input is-primary"
+                    className="input is-primary is-medium"
                     type="text"
                     placeholder={deck.title}
                     value={title}
-                    onChange={e => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
                 <div className="control">
-                  <button className="button is-primary" type="submit">
+                  <button className="button is-primary is-medium" type="submit">
                     <span className="icon">
                       <Save />
                     </span>
@@ -61,6 +81,7 @@ const Deck = ({ deck }) => {
               </div>
             </form>
           ) : (
+            // display the title
             <React.Fragment>
               <p className="card-header-title">{deck.title}</p>
               <div className="card-header-icon" aria-label="more options">

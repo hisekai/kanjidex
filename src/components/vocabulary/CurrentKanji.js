@@ -26,7 +26,7 @@ const CurrentKanji = ({ kanji, radical, examples }) => {
           style={{
             height: "60vh !important",
             overflowY: "scroll",
-            maxHeight: "520px"
+            maxHeight: "520px",
           }}
         >
           <Examples examples={examples} />

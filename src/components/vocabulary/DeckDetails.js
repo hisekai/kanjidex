@@ -4,51 +4,53 @@ import { SpeechBubble } from "react-kawaii";
 import { Search, Eye, Trash2 } from "react-feather";
 import CurrentKanji from "./CurrentKanji";
 
-const DeckDetails = props => {
+const DeckDetails = (props) => {
   const { decks, dispatch } = useContext(VocabContext);
   const deckId = props.match.params.id;
-  const deck = decks.filter(deck => deck.id === deckId)[0];
+  const deck = decks.filter((deck) => deck.id === deckId)[0];
   const [currentKanji, setCurrentKanji] = useState();
   const [value, setValue] = useState("");
-  const handleRemove = kanji => {
+  const handleRemove = (kanji) => {
     dispatch({
       type: "REMOVE_KANJI",
-      deck: { id: deckId, kanji: kanji.kanji.query }
+      deck: { id: deckId, kanji: kanji.kanji.query },
     });
     setCurrentKanji();
   };
-  const list = deck.kanjis
-    .filter(k => value === "" || k.kanji.meaning.includes(value))
-    .map(kanji => {
-      return (
-        <div class="panel-block" style={{ justifyContent: "space-between" }}>
-          <span class="panel-icon">{kanji.kanji.query}</span>
-          {kanji.kanji.meaning}
-          <div class="field has-addons">
-            <p class="control">
-              <button
-                class="button is-info is-outlined"
-                onClick={() => setCurrentKanji(kanji)}
-              >
-                <span class="icon is-small">
-                  <Eye />
-                </span>
-              </button>
-            </p>
-            <p class="control">
-              <button
-                class="button is-danger is-outlined"
-                onClick={() => handleRemove(kanji)}
-              >
-                <span class="icon is-small">
-                  <Trash2 />
-                </span>
-              </button>
-            </p>
+  const list =
+    deck.kanjis &&
+    deck.kanjis
+      .filter((k) => value === "" || k.kanji.meaning.includes(value))
+      .map((kanji) => {
+        return (
+          <div class="panel-block" style={{ justifyContent: "space-between" }}>
+            <span class="panel-icon">{kanji.kanji.query}</span>
+            {kanji.kanji.meaning}
+            <div class="field has-addons">
+              <p class="control">
+                <button
+                  class="button is-info is-outlined"
+                  onClick={() => setCurrentKanji(kanji)}
+                >
+                  <span class="icon is-small">
+                    <Eye />
+                  </span>
+                </button>
+              </p>
+              <p class="control">
+                <button
+                  class="button is-danger is-outlined"
+                  onClick={() => handleRemove(kanji)}
+                >
+                  <span class="icon is-small">
+                    <Trash2 />
+                  </span>
+                </button>
+              </p>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
   return deck.kanjis.length > 0 ? (
     <div className="Deck-details container">
       <h2 className="title has-text-centered">
@@ -67,7 +69,7 @@ const DeckDetails = props => {
                   type="text"
                   placeholder="Search"
                   value={value}
-                  onChange={e => setValue(e.target.value)}
+                  onChange={(e) => setValue(e.target.value)}
                 />
                 <span class="icon is-left">
                   <Search />
@@ -81,7 +83,7 @@ const DeckDetails = props => {
                 onClick={() =>
                   dispatch({
                     type: "REMOVE_ALL_KANJI",
-                    deck: { id: deckId }
+                    deck: { id: deckId },
                   })
                 }
               >
@@ -98,7 +100,12 @@ const DeckDetails = props => {
               examples={currentKanji.examples}
             />
           ) : (
-            "no kanji selected"
+            <div className="has-text-centered">
+              <div style={{ margin: "40px" }}>
+                <SpeechBubble size={140} mood="happy" />
+              </div>
+              <h4 className="is-size-4">Select a kanji to get more details.</h4>
+            </div>
           )}
         </div>
       </div>

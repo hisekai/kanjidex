@@ -26,7 +26,7 @@ const Kanji = ({ kanji }) => {
   return (
     <StyledKanji>
       <div className="column">
-        <DMAK kanji={kanji.query} />
+        <DMAK kanji={kanji.query} jishoUri={kanji.strokeOrderSvgUri} />
         <h2 className="title is-5" style={{ textAlign: "center" }}>
           {kanji.meaning ? kanji.meaning : "not found"}
         </h2>
@@ -71,7 +71,7 @@ const Kanji = ({ kanji }) => {
               <strong>Onyomi:</strong>
               {kanji.onyomi
                 ? kanji.onyomi
-                    .map(on => JSON.stringify(on))
+                    .map((on) => JSON.stringify(on))
                     .join(", ")
                     .replace(/"/g, "")
                 : "not found"}
@@ -84,7 +84,7 @@ const Kanji = ({ kanji }) => {
               <strong>Kunyomi:</strong>
               {kanji.kunyomi
                 ? kanji.kunyomi
-                    .map(kun => JSON.stringify(kun))
+                    .map((kun) => JSON.stringify(kun))
                     .join(", ")
                     .replace(/"/g, "")
                 : "not found"}

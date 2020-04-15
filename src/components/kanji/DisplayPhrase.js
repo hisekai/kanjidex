@@ -3,7 +3,7 @@ import Phrase from "../Phrase";
 import KawaiiCat from "../KawaiiCat";
 import Info from "../layout/Info";
 
-const DisplayPhrase = ({ phrase, mood, error, setPhrase }) => {
+const DisplayPhrase = ({ phrase, mood, error, setPhrase, setMood }) => {
   return error ? (
     <div className="has-text-centered">
       <KawaiiCat mood={mood} />
@@ -14,7 +14,7 @@ const DisplayPhrase = ({ phrase, mood, error, setPhrase }) => {
   ) : (
     <React.Fragment>
       {phrase.length >= 1 ? (
-        <Phrase phrase={phrase} setPhrase={setPhrase} />
+        <Phrase phrase={phrase} setPhrase={setPhrase} setMood={setMood} />
       ) : (
         <div className="has-text-centered">
           <KawaiiCat mood={mood} />

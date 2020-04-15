@@ -42,16 +42,20 @@ const StyledDMAK = styled.div`
   }
 `;
 
-export const DMAK = props => {
+export const DMAK = (props) => {
   const [kanji, setKanji] = useState("");
-  const uri = "http://kanjivg.tagaini.net/kanjivg/kanji/";
+  // default uri using tagaini.net
+  //const tagainiUri = "http://kanjivg.tagaini.net/kanjivg/kanji/";
+  // jisho uri that links to the svg uri
+  const uri =
+    props.jishoUri.substring(0, props.jishoUri.lastIndexOf("/")) + "/";
   if (props.kanji && props.kanji !== kanji) {
     setKanji(props.kanji);
   }
   if (kanji) {
     let dmak = new Dmak(kanji, {
       element: "draw-kanji",
-      uri: uri
+      uri,
     });
 
     function handleBack() {

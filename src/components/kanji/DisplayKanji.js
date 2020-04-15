@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import KanjiDetails from "./KanjiDetails";
 import KanjiList from "./KanjiList";
 import KawaiiCat from "../KawaiiCat";
@@ -11,7 +11,7 @@ const DisplayKanji = ({
   deleteKanji,
   queryType,
   mood,
-  error
+  error,
 }) => {
   const handleView = () => {
     setKanji([]);

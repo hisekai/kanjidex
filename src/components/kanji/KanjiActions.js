@@ -36,6 +36,10 @@ const StyledKanjiActions = styled.div`
   button {
     min-height: 40px;
   }
+  button[type="submit"] {
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+  }
   .control > div > div {
     min-height: 40px;
     border-radius: 0;
@@ -44,30 +48,30 @@ const StyledKanjiActions = styled.div`
 
 const KanjiActions = ({ handleView, kanji }) => {
   const { decks, dispatch } = useContext(VocabContext);
-  const options = decks.map(deck => {
+  const options = decks.map((deck) => {
     return { value: deck.id, label: deck.title };
   });
   const [option, setOption] = useState(null);
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const newDeckId = uuid();
     if (option.__isNew__) {
       dispatch({
         type: "ADD_DECK",
-        deck: { title: option.label, id: newDeckId }
+        deck: { title: option.label, id: newDeckId },
       });
       dispatch({
         type: "ADD_KANJI",
-        deck: { id: newDeckId, kanji }
+        deck: { id: newDeckId, kanji },
       });
     } else {
       dispatch({
         type: "ADD_KANJI",
-        deck: { id: option.value, kanji }
+        deck: { id: option.value, kanji },
       });
     }
   };
-  const handleInputChange = inputValue => {
+  const handleInputChange = (inputValue) => {
     if (inputValue) {
       setOption({ label: inputValue, value: null });
     }
@@ -78,7 +82,7 @@ const KanjiActions = ({ handleView, kanji }) => {
       <button
         id="back"
         className="button is-primary is-outlined"
-        onClick={e => handleView(e)}
+        onClick={(e) => handleView(e)}
       >
         <ArrowLeft />{" "}
       </button>
@@ -87,8 +91,8 @@ const KanjiActions = ({ handleView, kanji }) => {
           <div className="control is-expanded" style={{ minWidth: "180px" }}>
             <CreatableSelect
               isClearable
-              onChange={option => setOption(option)}
-              onInputChange={e => handleInputChange(e)}
+              onChange={(option) => setOption(option)}
+              onInputChange={(e) => handleInputChange(e)}
               options={options}
             />
           </div>
