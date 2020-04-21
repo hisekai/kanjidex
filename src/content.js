@@ -23,7 +23,7 @@ function showInfo(kanji) {
       </div>
     </div>
     <div class="kanjidex-stroke-order">
-      <img src="${kanji.strokeOrderDiagramUri}" alt="${kanji.meaning}">  
+    <img src="//images.weserv.nl/?url=${kanji.strokeOrderDiagramUri}" alt="${kanji.meaning}">
     </div>
   </div>
 </div>`;
@@ -35,7 +35,7 @@ function showInfo(kanji) {
   // split the parent element of the selection
   let parts = content.innerHTML.split(regex);
 
-  let result = parts.map(part => {
+  let result = parts.map((part) => {
     if (part.match(regex) && part.indexOf("span") > -1) {
       return part;
     }
@@ -53,7 +53,7 @@ function showInfo(kanji) {
 
 // when Kanjidex gets message from background about the highlighted kanji
 // display the tooltip with kanji details
-chrome.extension.onMessage.addListener(function(message) {
+chrome.extension.onMessage.addListener(function (message) {
   if (message.action === "showKanji") {
     showInfo(message.kanji);
   }
