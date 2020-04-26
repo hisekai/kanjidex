@@ -1,33 +1,11 @@
 /* global chrome */
+import tippy from "tippy.js";
+const uuid = require("uuid/v4");
 
-// use index number instead!
 function showInfo(kanji) {
-  // create template to display kanji info in the tooltip
-  const template = `<div class="kanjidex">
-  <div class="kanjidex-kanji">
-    ${kanji.query}
-  </div>
-  <div class="kanjidex-details">
-    <div class="kanjidex-main">
-      <div class="row">
-        <h4 class="kanjidex-meaning"><span>Meaning:</span> ${kanji.meaning}</h4>
-      </div>
-      <div class="row">
-        <span>Onyomi:</span> ${kanji.onyomi}
-      </div>  
-      <div class="row">
-        <span>Kunyomi:</span> ${kanji.kunyomi}
-      </div>
-      <div class="row">
-        <span>Radical:</span> ${kanji.radical.symbol} (${kanji.radical.meaning})
-      </div>
-    </div>
-    <div class="kanjidex-stroke-order">
-    <img src="//images.weserv.nl/?url=${kanji.strokeOrderDiagramUri}" alt="${kanji.meaning}">
-    </div>
-  </div>
-</div>`;
-  // create a random id for the tooltip
+  // create unique id for the target element so that tippy can display the relevant info
+  const uniqueId = uuid();
+  const targetId = `kanjidex-${uniqueId}`;
   // get the kanji character
   const regex = new RegExp(`(${kanji.query})`);
   const selection = window.getSelection();
@@ -41,14 +19,37 @@ function showInfo(kanji) {
     }
 
     if (part.match(regex)) {
-      return `<span class='kanjidex-tooltip' style='border-bottom: dashed 1px indianred'>${part} <span class="kanjidex-tooltip__content">${template}</span></span>`;
+      return `<span class='kanjidex-tooltip ${targetId}' data-tippy-content="<div class='row'><div class='first-column'><p class='kanjidex-title'>${
+        kanji.query
+      }</p></div><div class='second-column'><p class='kanjidex-title'><strong>Meaning: </strong> ${
+        kanji.meaning
+      }</p></hr><p class='kanjidex-info'><strong>Onyomi: </strong>${
+        kanji.onyomi.length > 0 ? kanji.onyomi : "not found"
+      }</p><p class='kanjidex-info'><strong>Kunyomi: </strong>${
+        kanji.kunyomi.length > 0 ? kanji.kunyomi : "not found"
+      }</p><p class='kanjidex-info'><strong>Radical: </strong>${
+        kanji.radical.symbol.length > 0 ? kanji.radical.symbol : "not found"
+      } (${
+        kanji.radical.meaning.length > 0 ? kanji.radical.meaning : "not found"
+      })</p><p class='kanjidex-info'><img src='//images.weserv.nl/?url=${
+        kanji.strokeOrderDiagramUri
+      }' alt='${kanji.meaning}' /></p><p class='kanjidex-info'><a href='${
+        kanji.uri
+      }' target='_blank'>View on jisho.org</a></p></div></div>" style='border-bottom: dashed 1px indianred'>${part}</span>`;
     }
 
     return part;
   });
   // turn array into regular string
   result = result.join(" ");
-  content.innerHTML = result.toString();
+  content.innerHTML = result;
+
+  // initiate tippy
+  tippy("[data-tippy-content]", {
+    allowHTML: true,
+    theme: "kanjidex",
+    interactive: true,
+  });
 }
 
 // when Kanjidex gets message from background about the highlighted kanji

@@ -1,140 +1,112 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-
-/*
-most of the styling for the tooltip: https://codepen.io/mattstvartak/pen/bExepr/
-*/
-
-.kanjidex-tooltip {
-  display: inline;
-  -webkit-perspective: 500px;
-  -moz-perspective: 500px;
-  perspective: 500px;
-  position: relative;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 
 .kanjidex-tooltip:hover {
   cursor: pointer;
 }
 
-.kanjidex-tooltip:hover .kanjidex-tooltip__content {
-  -webkit-transform: translate3d(-50%, -10%, 0);
-  -moz-transform: translate3d(-50%, -10%, 0);
-  -ms-transform: translate3d(-50%, -10%, 0);
-  -o-transform: translate3d(-50%, -10%, 0);
-  transform: translate3d(-50%, -10%, 0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.kanjidex-tooltip__content {
-  font-family: "Roboto", sans-serif;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  transition: all 200ms ease;
-  -webkit-transform: translate3d(-50%, 0%, 0);
-  -moz-transform: translate3d(-50%, 0%, 0);
-  -ms-transform: translate3d(-50%, 0%, 0);
-  -o-transform: translate3d(-50%, 0%, 0);
-  transform: translate3d(-50%, 0%, 0);
-  -webkit-transform-origin: 0 10px;
-  -moz-transform-origin: 0 10px;
-  -ms-transform-origin: 0 10px;
-  -o-transform-origin: 0 10px;
-  transform-origin: 0 10px;
-  background-color: #fff;
-  border-radius: 4px;
-  color: #2f2f2f;
-  display: block;
-  font-size: 14px;
-  font-weight: normal;
-  left: 50%;
-  opacity: 0;
+/* kanjidex tooltip */
+.tippy-box[data-theme~="kanjidex"] {
+  background: #fff;
+  color: #333;
+  -webkit-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
+  -moz-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
+  box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
+  min-width: 550px;
   padding: 10px 20px;
-  pointer-events: none;
-  position: absolute;
-  text-align: left;
-  bottom: 100%;
-  box-shadow: 0 0 20px 4px rgba(154, 161, 177, 0.15),
-    0 4px 80px -8px rgba(36, 40, 47, 0.25),
-    0 4px 4px -2px rgba(91, 94, 105, 0.15);
-  z-index: 999;
+  z-index: 99999 !important;
 }
 
-.kanjidex-tooltip__content:before {
-  border-color: transparent;
-  border-top-color: #fff;
-  border-style: solid;
-  border-width: 10px;
-  content: " ";
-  display: block;
-  height: 0;
-  left: 50%;
-  margin-left: -10px;
-  position: absolute;
-  bottom: -20px;
-  width: 0;
-}
-
-.kanjidex-tooltip__content:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  width: 100%;
-  height: 20px;
-}
-
-.kanjidex-tooltip__content:hover {
-  -webkit-transform: rotateX(0deg) translate3d(-50%, -10%, 0);
-  -moz-transform: rotateX(0deg) translate3d(-50%, -10%, 0);
-  -ms-transform: rotateX(0deg) translate3d(-50%, -10%, 0);
-  -o-transform: rotateX(0deg) translate3d(-50%, -10%, 0);
-  transform: rotateX(0deg) translate3d(-50%, -10%, 0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* styles for tooltip content */
-.kanjidex {
-  padding: 10px 15px 10px 5px;
+.tippy-box[data-theme~="kanjidex"] .row {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-width: 650px;
-  z-index: 999;
 }
 
-.kanjidex > div {
-  flex: 35% 2 5%;
-}
-
-.kanjidex-kanji {
-  font-size: 48px;
+.tippy-box[data-theme~="kanjidex"] .first-column {
+  flex: 20%;
   display: flex;
-  align-self: center;
-  padding-right: 45px;
+  align-items: center;
+  justify-content: center;
 }
 
-.kanjidex-main {
-  text-align: left;
+.tippy-box[data-theme~="kanjidex"] .second-column {
+  flex: 80%;
 }
 
-.kanjidex-meaning {
-  font-size: 24px;
+.tippy-box[data-theme~="kanjidex"] .kanjidex-title {
+  font-size: 26px;
+  margin: none !important;
+  margin-bottom: 5px !important;
+  color: #333 !important;
+  line-height: 30px !important;
 }
 
-.kanjidex-main span {
-  font-weight: bold;
+.tippy-box[data-theme~="kanjidex"] .first-column .kanjidex-title {
+  font-size: 34px !important;
 }
 
-.kanjidex-main .row {
-  margin-bottom: 10px;
+.tippy-box[data-theme~="kanjidex"] .kanjidex-info {
+  font-size: 22px;
+  margin: none !important;
+  margin-bottom: 10px !important;
+  color: #333 !important;
+  line-height: 26px !important;
 }
 
-.kanjidex-stroke-order > img {
+.tippy-box[data-theme~="kanjidex"] img {
   height: auto;
-  margin-top: 10px;
-  align-self: flex-start;
-  width: 100%;
+  width: 97%;
+  margin-bottom: 10px !important;
+}
+
+.tippy-box[data-theme~="kanjidex"] hr {
+  width: 97%;
+}
+
+.tippy-box[data-theme~="kanjidex"] a {
+  margin: 15px 0 !important;
+  color: #f05252;
+  font-size: 20px !important;
+}
+
+.tippy-box[data-theme~="kanjidex"] .kanjidex-title,
+.tippy-box[data-theme~="kanjidex"] .kanjidex-info,
+.tippy-box[data-theme~="kanjidex"] a {
+  text-decoration: none;
+  font-family: "Noto Sans JP", sans-serif !important;
+  background-color: #fff !important;
+  border: none !important;
+  font-weight: normal !important;
+  padding: none !important;
+}
+
+.tippy-box[data-theme~="kanjidex"] .kanjidex-title::after,
+.tippy-box[data-theme~="kanjidex"] .kanjidex-info::after,
+.tippy-box[data-theme~="kanjidex"] a::after {
+  content: "";
+  display: none;
+}
+
+.tippy-box[data-theme~="kanjidex"] .kanjidex-title::before,
+.tippy-box[data-theme~="kanjidex"] .kanjidex-info::before,
+.tippy-box[data-theme~="kanjidex"] a::before {
+  content: "";
+  display: none;
+}
+
+/* styling for the arrow */
+
+.tippy-box[data-theme~="kanjidex"][data-placement^="top"]
+  > .tippy-arrow::before {
+  border-top-color: #fff;
+}
+.tippy-box[data-theme~="kanjidex"][data-placement^="bottom"]
+  > .tippy-arrow::before {
+  border-bottom-color: #fff;
+}
+.tippy-box[data-theme~="kanjidex"][data-placement^="left"]
+  > .tippy-arrow::before {
+  border-left-color: #fff;
+}
+.tippy-box[data-theme~="kanjidex"][data-placement^="right"]
+  > .tippy-arrow::before {
+  border-right-color: #fff;
 }

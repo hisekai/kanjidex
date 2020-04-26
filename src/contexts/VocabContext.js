@@ -3,7 +3,9 @@ import { vocabReducer } from "../reducers/vocabReducer";
 
 export const VocabContext = createContext();
 
-const VocabContextProvider = props => {
+const VocabContextProvider = (props) => {
+  // check if there's any data in the local storage
+  // if not then return an empty array
   const [decks, dispatch] = useReducer(vocabReducer, [], () => {
     const localData = localStorage.getItem("decks");
     return localData ? JSON.parse(localData) : [];

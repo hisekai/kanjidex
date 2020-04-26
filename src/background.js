@@ -4,11 +4,11 @@ const jishoApi = require("unofficial-jisho-api");
 const jisho = new jishoApi();
 
 function getInfo(kanjis, tabId) {
-  kanjis.forEach(kanji => {
-    jisho.searchForKanji(kanji).then(result => {
+  kanjis.forEach((kanji) => {
+    jisho.searchForKanji(kanji).then((result) => {
       chrome.tabs.sendMessage(tabId, {
         action: "showKanji",
-        kanji: result
+        kanji: result,
       });
     });
   });
@@ -20,16 +20,16 @@ function getInfo(kanjis, tabId) {
 chrome.contextMenus.create({
   id: "kanjidex-tooltip",
   title: "Search with Kanjidex",
-  contexts: ["selection"]
+  contexts: ["selection"],
 });
 
-chrome.contextMenus.onClicked.addListener(function(info) {
+chrome.contextMenus.onClicked.addListener(function (info) {
   chrome.tabs.query(
     {
       active: true,
-      currentWindow: true
+      currentWindow: true,
     },
-    function(tabs) {
+    function (tabs) {
       getInfo(nihongo.parseKanji(info.selectionText), tabs[0].id);
     }
   );
