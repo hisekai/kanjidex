@@ -1,4 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./../../public/fonts/NotoSansJP-Regular.otf") format("otf");
+}
+
+.kanjidex-tooltip {
+  border-bottom: dashed 1px indianred;
+}
 
 .kanjidex-tooltip:hover {
   cursor: pointer;
@@ -6,7 +15,7 @@
 
 /* kanjidex tooltip */
 .tippy-box[data-theme~="kanjidex"] {
-  background: #fff;
+  background: #fff !important;
   color: #333;
   -webkit-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
   -moz-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
@@ -18,33 +27,20 @@
 
 .tippy-box[data-theme~="kanjidex"] .row {
   display: flex;
-}
-
-.tippy-box[data-theme~="kanjidex"] .first-column {
-  flex: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tippy-box[data-theme~="kanjidex"] .second-column {
-  flex: 80%;
+  background: #fff !important;
+  z-index: 99999 !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-title {
-  font-size: 26px;
+  font-size: 24px;
   margin: none !important;
-  margin-bottom: 5px !important;
+  margin-bottom: 15px !important;
   color: #333 !important;
   line-height: 30px !important;
 }
 
-.tippy-box[data-theme~="kanjidex"] .first-column .kanjidex-title {
-  font-size: 34px !important;
-}
-
 .tippy-box[data-theme~="kanjidex"] .kanjidex-info {
-  font-size: 22px;
+  font-size: 18px !important;
   margin: none !important;
   margin-bottom: 10px !important;
   color: #333 !important;
@@ -57,20 +53,16 @@
   margin-bottom: 10px !important;
 }
 
-.tippy-box[data-theme~="kanjidex"] hr {
-  width: 97%;
-}
-
 .tippy-box[data-theme~="kanjidex"] a {
   margin: 15px 0 !important;
-  color: #f05252;
-  font-size: 20px !important;
+  color: #f05252 !important;
+  font-size: 18px !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-title,
 .tippy-box[data-theme~="kanjidex"] .kanjidex-info,
 .tippy-box[data-theme~="kanjidex"] a {
-  text-decoration: none;
+  text-decoration: none !important;
   font-family: "Noto Sans JP", sans-serif !important;
   background-color: #fff !important;
   border: none !important;
@@ -90,6 +82,14 @@
 .tippy-box[data-theme~="kanjidex"] a::before {
   content: "";
   display: none;
+}
+
+.tippy-box[data-theme~="kanjidex"] strong {
+  color: hsl(0, 0%, 39%) !important;
+}
+
+.tippy-box[data-theme~="kanjidex"] p {
+  line-height: 24px !important;
 }
 
 /* styling for the arrow */

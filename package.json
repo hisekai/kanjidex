@@ -20,7 +20,7 @@
     "react-tabs": "^3.1.0",
     "request-promise": "^4.2.5",
     "styled-components": "^4.4.1",
-    "tippy.js": "^6.2.0",
+    "tippy.js": "^6.2.1",
     "unofficial-jisho-api": "^2.0.8",
     "uuid": "^3.3.3"
   },

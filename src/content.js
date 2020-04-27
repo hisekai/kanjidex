@@ -18,24 +18,19 @@ function showInfo(kanji) {
       return part;
     }
 
+    // return the matching kanji with a wrapped span and the template with the basic info about the kanji
     if (part.match(regex)) {
-      return `<span class='kanjidex-tooltip ${targetId}' data-tippy-content="<div class='row'><div class='first-column'><p class='kanjidex-title'>${
-        kanji.query
-      }</p></div><div class='second-column'><p class='kanjidex-title'><strong>Meaning: </strong> ${
+      return `<span class="kanjidex-tooltip ${targetId}" data-tippy-content="<div class='row'><div class='main-info'><p class='kanjidex-title'><strong>Meaning: </strong> ${
         kanji.meaning
-      }</p></hr><p class='kanjidex-info'><strong>Onyomi: </strong>${
+      }</p><p class='kanjidex-info'><strong>Onyomi: </strong>${
         kanji.onyomi.length > 0 ? kanji.onyomi : "not found"
       }</p><p class='kanjidex-info'><strong>Kunyomi: </strong>${
         kanji.kunyomi.length > 0 ? kanji.kunyomi : "not found"
-      }</p><p class='kanjidex-info'><strong>Radical: </strong>${
-        kanji.radical.symbol.length > 0 ? kanji.radical.symbol : "not found"
-      } (${
-        kanji.radical.meaning.length > 0 ? kanji.radical.meaning : "not found"
-      })</p><p class='kanjidex-info'><img src='//images.weserv.nl/?url=${
+      }</p><p class='kanjidex-info'><img src='//images.weserv.nl/?url=${
         kanji.strokeOrderDiagramUri
       }' alt='${kanji.meaning}' /></p><p class='kanjidex-info'><a href='${
         kanji.uri
-      }' target='_blank'>View on jisho.org</a></p></div></div>" style='border-bottom: dashed 1px indianred'>${part}</span>`;
+      }' target='_blank'>View on jisho.org</a></p></div></div>">${part}</span>`;
     }
 
     return part;
