@@ -41,6 +41,9 @@ const StyledHelp = styled.div`
     .react-tabs__tab--selected {
       color: ${Colors.main}!important;
     }
+    li[role="tab"]:hover {
+      color: ${Colors.main}!important;
+    }
   }
   .content {
     margin-left: 50px;
