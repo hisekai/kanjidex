@@ -97,7 +97,7 @@ const Kanji = ({ kanji }) => {
             style={{ maxWidth: "100%" }}
           >
             <figure
-              class="image is-fullwidth"
+              className="image is-fullwidth"
               onClick={() => setIsVisible(true)}
             >
               {kanji.strokeOrderDiagramUri && (
@@ -108,10 +108,10 @@ const Kanji = ({ kanji }) => {
                 />
               )}
             </figure>
-            <div class={isVisible ? "modal is-active" : "modal"}>
-              <div class="modal-background"></div>
-              <div class="modal-content">
-                <p class="image is-fullwidth">
+            <div className={isVisible ? "modal is-active" : "modal"}>
+              <div className="modal-background"></div>
+              <div className="modal-content">
+                <p className="image is-fullwidth">
                   <img
                     src={kanji.strokeOrderDiagramUri}
                     alt={kanji.meaning}
@@ -120,7 +120,7 @@ const Kanji = ({ kanji }) => {
                 </p>
               </div>
               <button
-                class="modal-close is-large"
+                className="modal-close is-large"
                 aria-label="close"
                 onClick={() => setIsVisible(false)}
               ></button>

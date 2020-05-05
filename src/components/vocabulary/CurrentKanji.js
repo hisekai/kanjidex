@@ -7,12 +7,12 @@ const CurrentKanji = ({ kanji, radical, examples }) => {
   return (
     <div className="columns is-multiline">
       <div className="column">
-        <p class="subtitle is-4 has-text-grey-light">Kanji</p>
+        <p className="subtitle is-4 has-text-grey-light">Kanji</p>
         <Kanji kanji={kanji} />
       </div>
       <div className="column">
         <p
-          class="subtitle is-4 has-text-grey-light"
+          className="subtitle is-4 has-text-grey-light"
           style={{ marginBottom: "65px" }}
         >
           Radical
@@ -20,7 +20,7 @@ const CurrentKanji = ({ kanji, radical, examples }) => {
         <Radical radical={radical} />
       </div>
       <div className="column">
-        <p class="subtitle is-4 has-text-grey-light">Examples</p>
+        <p className="subtitle is-4 has-text-grey-light">Examples</p>
         <div
           className="Examples-vocabulary"
           style={{

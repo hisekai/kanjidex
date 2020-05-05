@@ -99,7 +99,9 @@ const Deck = ({
             <p className="has-text-left">
               Currently you have{" "}
               <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong> kanji
-              characters saved.
+              characters saved <br /> and{" "}
+              <strong>{deck.phrases ? deck.phrases.length : "0"}</strong> words
+              saved.
             </p>
           </div>
         </div>

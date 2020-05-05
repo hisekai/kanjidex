@@ -30,11 +30,11 @@ const QuickSearch = () => {
           contain kanji characters only.
         </figcaption>
       </figure>
-      <article class="message is-warning">
-        <div class="message-header">
+      <article className="message is-warning">
+        <div className="message-header">
           <p>Warning</p>
         </div>
-        <div class="message-body">
+        <div className="message-body">
           Quick searching will display the results but its styling can sometimes
           get broken. A simple refreshing of the page will resolve the issue. I
           am aware that it's a nuisance and it's something that I'm currently

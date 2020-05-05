@@ -1,57 +1,51 @@
 import React, { useContext, useState } from "react";
 import { VocabContext } from "../../contexts/VocabContext";
 import { SpeechBubble } from "react-kawaii";
-import { Search, Eye, Trash2 } from "react-feather";
+import { Search } from "react-feather";
 import CurrentKanji from "./CurrentKanji";
+import CurrentPhrase from "./CurrentPhrase";
+import ListOfKanjis from "./ListOfKanjis";
+import ListOfPhrases from "./ListOfPhrases";
 
 const DeckDetails = (props) => {
   const { decks, dispatch } = useContext(VocabContext);
   const deckId = props.match.params.id;
   const deck = decks.filter((deck) => deck.id === deckId)[0];
+  const [tab, setTab] = useState("kanji");
   const [currentKanji, setCurrentKanji] = useState();
+  const [currentPhrase, setCurrentPhrase] = useState();
   const [value, setValue] = useState("");
-  const handleRemove = (kanji) => {
+  const handleRemoveKanji = (kanji) => {
     dispatch({
       type: "REMOVE_KANJI",
       deck: { id: deckId, kanji: kanji.kanji.query },
     });
-    setCurrentKanji();
+    if (kanji.kanji.query === currentKanji.kanji.query) {
+      setCurrentKanji();
+    }
   };
-  const list =
-    deck.kanjis &&
-    deck.kanjis
-      .filter((k) => value === "" || k.kanji.meaning.includes(value))
-      .map((kanji) => {
-        return (
-          <div class="panel-block" style={{ justifyContent: "space-between" }}>
-            <span class="panel-icon">{kanji.kanji.query}</span>
-            {kanji.kanji.meaning}
-            <div class="field has-addons">
-              <p class="control">
-                <button
-                  class="button is-info is-outlined"
-                  onClick={() => setCurrentKanji(kanji)}
-                >
-                  <span class="icon is-small">
-                    <Eye />
-                  </span>
-                </button>
-              </p>
-              <p class="control">
-                <button
-                  class="button is-danger is-outlined"
-                  onClick={() => handleRemove(kanji)}
-                >
-                  <span class="icon is-small">
-                    <Trash2 />
-                  </span>
-                </button>
-              </p>
-            </div>
-          </div>
-        );
-      });
-  return deck.kanjis.length > 0 ? (
+  const handleRemovePhrase = (phrase) => {
+    dispatch({
+      type: "REMOVE_PHRASE",
+      deck: { id: deckId, phrase: phrase.slug },
+    });
+    if (phrase.slug === currentPhrase.slug) {
+      setCurrentPhrase();
+    }
+  };
+  return deck.kanjis.length === 0 && deck.phrases.length === 0 ? (
+    <div className="has-text-centered">
+      <div style={{ margin: "40px" }}>
+        <SpeechBubble size={140} mood="happy" />
+      </div>
+
+      <h4 className="is-size-4">
+        Your deck is currently empty. <br />
+        Start adding either kanji or words to your deck to have them displayed
+        here.
+      </h4>
+    </div>
+  ) : (
     <div className="Deck-details container">
       <h2 className="title has-text-centered">
         <strong>Deck: </strong>
@@ -60,68 +54,88 @@ const DeckDetails = (props) => {
       <hr />
       <div className="columns">
         <div className="column is-one-quarter">
-          <nav class="panel">
-            <p class="panel-heading">Currently Saved Kanji</p>
-            <div class="panel-block">
-              <p class="control has-icons-left">
+          <nav className="panel">
+            <p className="panel-heading">Currently Saved Kanji</p>
+            <div className="panel-block">
+              <p className="control has-icons-left">
                 <input
-                  class="input is-primary"
+                  className="input is-primary"
                   type="text"
                   placeholder="Search"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                 />
-                <span class="icon is-left">
+                <span className="icon is-left">
                   <Search />
                 </span>
               </p>
             </div>
-            {list}
-            <div class="panel-block">
-              <button
-                class="button is-danger is-outlined is-fullwidth"
-                onClick={() =>
-                  dispatch({
-                    type: "REMOVE_ALL_KANJI",
-                    deck: { id: deckId },
-                  })
-                }
+            <p className="panel-tabs">
+              <a
+                className={tab === "kanji" && "is-active"}
+                onClick={(e) => setTab("kanji")}
               >
-                Remove All
-              </button>
-            </div>
+                Kanji
+              </a>
+              <a
+                className={tab === "phrase" && "is-active"}
+                onClick={() => setTab("phrase")}
+              >
+                Words
+              </a>
+            </p>
+            {tab === "phrase" ? (
+              <ListOfPhrases
+                deckId={deckId}
+                phrases={deck.phrases}
+                value={value}
+                setCurrentPhrase={setCurrentPhrase}
+                handleRemovePhrase={handleRemovePhrase}
+              />
+            ) : (
+              <ListOfKanjis
+                deckId={deckId}
+                kanjis={deck.kanjis}
+                value={value}
+                setCurrentKanji={setCurrentKanji}
+                handleRemoveKanji={handleRemoveKanji}
+              />
+            )}
           </nav>
         </div>
         <div className="column">
-          {currentKanji ? (
-            <CurrentKanji
-              kanji={currentKanji.kanji}
-              radical={currentKanji.radical}
-              examples={currentKanji.examples}
-            />
+          {/* check if there are any current kanji or phrase selected */}
+          {(currentKanji && tab === "kanji") ||
+          (currentPhrase && tab === "phrase") ? (
+            tab === "kanji" && currentKanji ? (
+              <CurrentKanji
+                kanji={currentKanji.kanji}
+                radical={currentKanji.radical}
+                examples={currentKanji.examples}
+              />
+            ) : (
+              tab === "phrase" &&
+              currentPhrase && <CurrentPhrase phrase={currentPhrase} />
+            )
           ) : (
             <div className="has-text-centered">
               <div style={{ margin: "40px" }}>
                 <SpeechBubble size={140} mood="happy" />
               </div>
-              <h4 className="is-size-4">Select a kanji to get more details.</h4>
+              {/* check if there's any available data at all */}
+              <h4 className="is-size-4">
+                {tab === "kanji"
+                  ? deck.kanjis.length !== 0
+                    ? "Select a kanji to get more details."
+                    : "You don't have any kanji characters saved"
+                  : deck.phrases.length !== 0
+                  ? "Select a phrase to get more details."
+                  : "You don't have any words saved"}
+              </h4>
             </div>
           )}
         </div>
       </div>
-    </div>
-  ) : (
-    <div className="has-text-centered">
-      <h2 className="title has-text-centered">
-        <strong>Deck: </strong>
-        {deck.title}
-      </h2>
-      <div style={{ margin: "40px" }}>
-        <SpeechBubble size={140} mood="sad" />
-      </div>
-      <h4 className="is-size-4">
-        It seems you have no kanji characters in your deck
-      </h4>
     </div>
   );
 };

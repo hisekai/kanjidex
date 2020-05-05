@@ -3,6 +3,7 @@ import styled from "styled-components";
 import nihongo from "nihongo";
 import KanjiDetails from "./kanji/KanjiDetails";
 import KanjiActions from "./kanji/KanjiActions";
+import PhraseActions from "./Phrase/PhraseActions";
 import { getKanji } from "../helpers/getKanji";
 import { Colors } from "./../helpers/theme";
 
@@ -81,7 +82,7 @@ const Phrase = ({ phrase, setPhrase, setMood }) => {
       >
         <button
           className="button is-fullwidth is-danger"
-          style={{ paddingBottom: "10px" }}
+          style={{ marginBottom: "8px" }}
           onClick={(e) => handleClear(e)}
         >
           Clear All
@@ -96,7 +97,17 @@ const Phrase = ({ phrase, setPhrase, setMood }) => {
                   </ruby>
                 </span>{" "}
                 {p.is_common && (
-                  <span className="tag is-success">common word</span>
+                  <span
+                    className="tag is-success"
+                    style={{ marginBottom: "8px" }}
+                  >
+                    common word
+                  </span>
+                )}
+                {p.jlpt && p.jlpt.length !== 0 && (
+                  <span className="tag is-info">
+                    {p.jlpt.map((j) => j.split("-").join(" ")).join(", ")}
+                  </span>
                 )}
               </div>
               <div className="Phrase-senses">
@@ -111,24 +122,29 @@ const Phrase = ({ phrase, setPhrase, setMood }) => {
                   );
                 })}
               </div>
-              <div className="Phrase-kanjis">
-                <h4>Kanji in this word:</h4>
-                <div className="Phrase-kanjis-link">
-                  {nihongo
-                    .parseKanji(p.japanese[0].word)
-                    .map((kanji, index) => (
-                      <a
-                        key={index}
-                        onClick={(e) => handleClick(e)}
-                        href="/"
-                        className="is-link"
-                        lang="ja"
-                      >
-                        {kanji}
-                      </a>
-                    ))}
+              {p.japanese[0].word && (
+                <div className="Phrase-kanjis">
+                  <h4>Kanji in this word:</h4>
+                  <div className="Phrase-kanjis-link">
+                    {p.japanese[0].word &&
+                      nihongo
+                        .parseKanji(p.japanese[0].word)
+                        .map((kanji, index) => (
+                          <a
+                            key={index}
+                            onClick={(e) => handleClick(e)}
+                            href="/"
+                            className="is-link"
+                            lang="ja"
+                          >
+                            {kanji}
+                          </a>
+                        ))}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              <PhraseActions phrase={phrase[index]} />
               <hr />
             </div>
           );

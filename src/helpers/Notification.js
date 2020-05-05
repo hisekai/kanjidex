@@ -1,44 +1,48 @@
 /* global chrome */
-
-// notifications that tell the user about specific actions performed in kanjidex
-export const deletedNotification = () => {
-  const deletedKanji = {
+export const deletedNotification = (type = "kanji") => {
+  const deletedItem = {
     type: "basic",
     iconUrl: "./icons/notification-trash.png",
-    title: "Kanji successfully deleted.",
-    message: "Kanji deleted.",
+    title: `${type === "kanji" ? "Kanji" : "Word"} successfully deleted.`,
+    message: `${type === "kanji" ? "Kanji" : "Word"} deleted.`,
   };
-  console.log(deletedKanji.iconUrl);
-  chrome.notifications.create("deletedKanjiNotif", deletedKanji);
+  chrome.notifications.create("deletedItemNotif", deletedItem);
 };
 
-export const savedNotification = () => {
+export const savedNotification = (type = "kanji") => {
   const savedIt = {
     type: "basic",
     iconUrl: "./icons/notification-save.png",
-    title: "Kanji successfully saved!",
-    message:
-      "Kanji successfully saved. Check the vocabulary page to see all the saved kanji characters.",
+    title: `${type === "kanji" ? "Kanji" : "Word"} successfully saved!`,
+    message: `${
+      type === "kanji" ? "Kanji" : "Word"
+    } successfully saved. Check the vocabulary page to see all the saved ${
+      type === "kanji" ? "kanji characters" : "words"
+    }.`,
   };
-  chrome.notifications.create("hasSavedKanji", savedIt);
+  chrome.notifications.create("hasSavedIt", savedIt);
 };
 
-export const alreadySavedNotification = () => {
+export const alreadySavedNotification = (type = "kanji") => {
   let alreadySaved = {
     type: "basic",
     iconUrl: "./icons/notification-warning.png",
-    title: "Kanji already saved",
-    message: "Seems you already have this kanji saved.",
+    title: `${type === "kanji" ? "Kanji" : "Word"} already saved`,
+    message: `Seems you already have this ${
+      type === "kanji" ? "kanji character" : "word"
+    } saved.`,
   };
   chrome.notifications.create("alreadySavedNotif", alreadySaved);
 };
 
-export const removedAllNotification = () => {
+export const removedAllNotification = (type = "kanji") => {
   let removedAll = {
     type: "basic",
     iconUrl: "./icons/notification-trash.png",
     title: "Removed All",
-    message: "You have removed all kanji characters in this deck",
+    message: `You have removed all ${
+      type === "kanji" ? "kanji characters" : "words"
+    } in this deck`,
   };
   chrome.notifications.create("removedAllNotif", removedAll);
 };

@@ -14,7 +14,7 @@ const About = () => {
         </div>
         <div className="columns">
           <div className="column is-one-quarter">
-            <p class="title is-5">
+            <p className="title is-5">
               Find it on Chrome Store:{" "}
               <a
                 href="https://chrome.google.com/webstore/detail/kanjidex/jhongcfphlabkimfoamdbffjgifglifk"
@@ -28,13 +28,14 @@ const About = () => {
                 />
               </a>
             </p>
-            <p class="title is-5">
-              Current version: <span class="tag is-primary is-light">3.0</span>
+            <p className="title is-5">
+              Current version:{" "}
+              <span className="tag is-primary is-light">3.0</span>
             </p>
-            <p class="title is-6">
+            <p className="title is-6">
               Last update: <span className="has-text-grey">May 1st, 2020</span>
             </p>
-            <p class="title is-6">
+            <p className="title is-6">
               Official site:{" "}
               <span className="has-text-grey">
                 <a
@@ -46,7 +47,7 @@ const About = () => {
                 </a>
               </span>
             </p>
-            <p class="title is-6">
+            <p className="title is-6">
               Github Repo:{" "}
               <a
                 className="has-text-grey"
@@ -56,7 +57,7 @@ const About = () => {
                 <GitHub />
               </a>
             </p>
-            <p class="title is-6">
+            <p className="title is-6">
               Email: <span className="has-text-grey">hello@kanjidex.com</span>
             </p>
           </div>
