@@ -4,18 +4,18 @@ import { VocabContext } from "../../contexts/VocabContext";
 const NewDeckForm = ({ setMood }) => {
   const { dispatch } = useContext(VocabContext);
   const [title, setTitle] = useState("");
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({
       type: "ADD_DECK",
       deck: {
-        title
-      }
+        title,
+      },
     });
     setTitle("");
     setMood("happy");
   };
-  const handleChange = e => {
+  const handleChange = (e) => {
     setTitle(e.target.value);
     setMood("excited");
   };
@@ -29,7 +29,7 @@ const NewDeckForm = ({ setMood }) => {
               type="text"
               placeholder="Create a deck"
               value={title}
-              onChange={e => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               onBlur={() => {
                 setMood("happy");
               }}

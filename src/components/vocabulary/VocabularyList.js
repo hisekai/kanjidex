@@ -1,11 +1,14 @@
-import React, { useContext, useState } from "react";
+/*global chrome*/
+import React, { useContext, useState, useEffect } from "react";
 import { VocabContext } from "../../contexts/VocabContext";
 import Deck from "./Deck";
 import { SpeechBubble } from "react-kawaii";
 import { Pagination } from "./Pagination";
+import uuid from "uuid/v4";
+import { getKanji } from "../../helpers/getKanji";
 
 const VocabularyList = ({ mood }) => {
-  const { decks } = useContext(VocabContext);
+  const { decks, dispatch } = useContext(VocabContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [decksPerPage] = useState(6);
   // get current decks
@@ -14,6 +17,37 @@ const VocabularyList = ({ mood }) => {
   const currentDecks = decks.slice(indexOfFirstDeck, indexOfLastDeck);
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  useEffect(() => {
+    // check if there's any previous saved data from Kanjidex v.2
+    chrome.storage.local.get("savedKanjis", function (result) {
+      const savedKanjis = result.savedKanjis;
+      if (savedKanjis && savedKanjis.length > 0) {
+        const deckId = uuid();
+        dispatch({
+          type: "ADD_DECK",
+          deck: {
+            title: "Kanjidex",
+            id: deckId,
+          },
+        });
+
+        // get each Kanjidex details and store them to the newly created deck
+        savedKanjis.forEach(async (kanji, index) => {
+          const data = await getKanji(kanji);
+          dispatch({
+            type: "ADD_KANJI",
+            deck: { id: deckId, kanji: data },
+          });
+          // force update
+          if (index === savedKanjis.length - 1) {
+            window.location.reload();
+          }
+        });
+      }
+      // remove the old storage
+      chrome.storage.local.remove(["savedKanjis"]);
+    });
+  }, [dispatch]);
   return decks.length ? (
     <div className="has-text-centered" style={{ padding: "40px" }}>
       <h2 className="is-size-4">Saved Vocabulary Decks</h2>

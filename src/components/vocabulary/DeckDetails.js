@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { VocabContext } from "../../contexts/VocabContext";
 import { SpeechBubble } from "react-kawaii";
 import { Search } from "react-feather";
@@ -33,7 +33,7 @@ const DeckDetails = (props) => {
       setCurrentPhrase();
     }
   };
-  return deck.kanjis.length === 0 && deck.phrases.length === 0 ? (
+  return !deck || (deck.kanjis.length === 0 && deck.phrases.length === 0) ? (
     <div className="has-text-centered">
       <div style={{ margin: "40px" }}>
         <SpeechBubble size={140} mood="happy" />
