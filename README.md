@@ -1,4 +1,29 @@
+# Kanjidex v.3
+
+Kanjidex is a simple chrome extension for looking up kanji characters and searching for words/phrases in Japanese. It uses the unofficial Jisho API and KanjiAlive API for fetching data.
+
+You can see the extension on the chrome webstore following this link:
+https://chrome.google.com/webstore/detail/kanjidex/jhongcfphlabkimfoamdbffjgifglifk
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Prerequisites
+
+You will need both Node.js and npm installed as well as a Chrome or Chromium browser for loading the extension. You will also need to get the [KanjiAlive API key](https://rapidapi.com/KanjiAlive/api/learn-to-read-and-write-japanese-kanji) and replace the variables in `src/helpers/getKanji.js` and `src/helpers/getEnglish.js` with the given key.
+
+## Getting Started
+
+Getting started is really easy. First, download the repository:
+
+```
+git clone https://github.com/seekwhence/kanjidex.git
+```
+
+then install the npm modules:
+
+```
+npm install
+```
 
 ## Available Scripts
 
@@ -12,11 +37,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
@@ -27,42 +47,21 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Load the extension in your browser
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Don't forget to load unpacked the extension's dist folder on your Chrome or Chromium "extensions" page while ensuring the developer mode is enabled.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [unofficial-jisho-api](https://github.com/mistval/unofficial-jisho-api) - Awesome scraper for Jisho.org
+- [Kanji alive](https://app.kanjialive.com/api/docs) - Kanji Alive API for additional kanji information like radical animations and examples with audio
+- [dmak](https://github.com/mbilbille/dmak) - draw me a kanji was used for adding more control to the kanji stroke animation
+- [tippyjs](https://github.com/atomiks/tippyjs) - used for tooltips
+- [nihongo](https://github.com/darren-lester/nihongo) - used for parsing Japanese characters
+- [bulma](https://github.com/jgthms/bulma) - CSS framework of choice
+- [react feather icons](https://github.com/feathericons/react-feather) - icon set used in this project
+- [react kawaii](https://react-kawaii.now.sh/) - cute vector illustrations used for enhancing the UI^^
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project is licensed under the MIT License.
