@@ -4,7 +4,7 @@ import { search } from "../helpers/search";
 import SearchForm from "./SearchForm";
 import Loader from "./layout/Loader";
 import DisplayKanji from "./kanji/DisplayKanji";
-import DisplayPhrase from "./kanji/DisplayPhrase";
+import DisplayPhrase from "./phrase/DisplayPhrase";
 
 const Home = () => {
   const [kanji, setKanji] = useState([]);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import nihongo from "nihongo";
-import KanjiDetails from "./kanji/KanjiDetails";
-import KanjiActions from "./kanji/KanjiActions";
-import PhraseActions from "./Phrase/PhraseActions";
-import { getKanji } from "../helpers/getKanji";
-import { Colors } from "./../helpers/theme";
+import KanjiDetails from "../kanji/KanjiDetails";
+import KanjiActions from "../kanji/KanjiActions";
+import PhraseActions from "./PhraseActions";
+import { getKanji } from "../../helpers/getKanji";
+import { Colors } from "../../helpers/theme";
 
 const StyledPhrase = styled.div`
   padding: 0 10px;
@@ -115,7 +115,9 @@ const Phrase = ({ phrase, setPhrase, setMood }) => {
                   return (
                     <div key={index} className="Phrase-sense">
                       {sense.parts_of_speech && (
-                        <h5 className="is-dark">{sense.parts_of_speech}</h5>
+                        <h5 className="is-dark">
+                          {sense.parts_of_speech.join(" ")}
+                        </h5>
                       )}
                       <p> {sense.english_definitions.join(", ")}</p>
                     </div>

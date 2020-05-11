@@ -18,42 +18,47 @@ const VocabularyList = ({ mood }) => {
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
-    // check if there's any previous saved data from Kanjidex v.2
-    chrome.storage.local.get("savedKanjis", function (result) {
-      const savedKanjis = result.savedKanjis;
-      if (savedKanjis && savedKanjis.length > 0) {
-        const deckId = uuid();
-        dispatch({
-          type: "ADD_DECK",
-          deck: {
-            title: "Kanjidex",
-            id: deckId,
-          },
-        });
-
-        // get each Kanjidex details and store them to the newly created deck
-        savedKanjis.forEach(async (kanji, index) => {
-          const data = await getKanji(kanji);
+    if (process.env.NODE_ENV === "production") {
+      // check if there's any previous saved data from Kanjidex v.2
+      chrome.storage.local.get("savedKanjis", function (result) {
+        const savedKanjis = result.savedKanjis;
+        if (savedKanjis && savedKanjis.length > 0) {
+          const deckId = uuid();
           dispatch({
-            type: "ADD_KANJI",
-            deck: { id: deckId, kanji: data },
+            type: "ADD_DECK",
+            deck: {
+              title: "Kanjidex",
+              id: deckId,
+            },
           });
-          // force update
-          if (index === savedKanjis.length - 1) {
-            window.location.reload();
-          }
-        });
-      }
-      // remove the old storage
-      chrome.storage.local.remove(["savedKanjis"]);
-    });
+
+          // get each Kanjidex details and store them to the newly created deck
+          savedKanjis.forEach(async (kanji, index) => {
+            const data = await getKanji(kanji);
+            dispatch({
+              type: "ADD_KANJI",
+              deck: { id: deckId, kanji: data },
+            });
+            // force update
+            if (index === savedKanjis.length - 1) {
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            }
+          });
+        }
+        // remove the old storage
+        chrome.storage.local.remove(["savedKanjis"]);
+      });
+    }
   }, [dispatch]);
+
   return decks.length ? (
     <div className="has-text-centered" style={{ padding: "40px" }}>
       <h2 className="is-size-4">Saved Vocabulary Decks</h2>
       <p style={{ paddingBottom: "20px" }}>
-        Browse through the decks that contain the kanji characters that you've
-        saved.
+        Browse through the decks that contain the kanji characters and words
+        that you've saved.
       </p>
       <hr />
       <div className="container">

@@ -24,13 +24,14 @@ export const search = async (
           setError("Your search doesn't contain any kanji characters.");
           setMood("shocked");
         } else {
-          parsedQuery.forEach(async kanji => {
+          parsedQuery.forEach(async (kanji) => {
             setLoading(true);
             const data = await getKanji(kanji);
             tempArray.push(data);
             if (tempArray.length === parsedQuery.length) {
               setKanji(tempArray);
               setLoading(false);
+              setError();
             }
           });
         }
@@ -39,6 +40,7 @@ export const search = async (
         const data = await getKanji(q);
         setKanji(data);
         setLoading(false);
+        setError();
       }
     }
   } else if (queryType === "phrase") {
@@ -50,9 +52,11 @@ export const search = async (
       const data = await getPhrase(q);
       data.meta.status === 200
         ? setPhrase(data.data)
-        : setError("Unfortunately, there is no data for your search.");
-      setMood("sad");
+        : setError("Unfortunately, there is no data for your search.") &&
+          setMood("sad");
+      setMood("happy");
       setLoading(false);
+      setError();
     }
   } else if (queryType === "english") {
     if (nihongo.isJapanese(q)) {
@@ -70,7 +74,7 @@ export const search = async (
           setMood("sad");
           setLoading(false);
         } else {
-          englishData.forEach(async kanji => {
+          englishData.forEach(async (kanji) => {
             const data = await getKanji(kanji.kanji.character);
             tempArray.push(data);
             if (tempArray.length === englishData.length) {
@@ -85,7 +89,7 @@ export const search = async (
             }
           });
         }
-      }, 4000);
+      }, 2000);
     }
   }
 };

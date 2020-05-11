@@ -74,7 +74,9 @@ const CurrentPhrase = ({ phrase }) => {
               return (
                 <div key={index} className="Phrase-sense">
                   {sense.parts_of_speech && (
-                    <h5 className="is-dark">{sense.parts_of_speech}</h5>
+                    <h5 className="is-dark">
+                      {sense.parts_of_speech.join(" ")}
+                    </h5>
                   )}
                   <p>
                     {" "}

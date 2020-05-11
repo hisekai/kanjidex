@@ -4,16 +4,22 @@ import { VocabContext } from "../../contexts/VocabContext";
 const NewDeckForm = ({ setMood }) => {
   const { dispatch } = useContext(VocabContext);
   const [title, setTitle] = useState("");
+  const [error, setError] = useState(false);
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: "ADD_DECK",
-      deck: {
-        title,
-      },
-    });
-    setTitle("");
-    setMood("happy");
+    if (title.length > 0) {
+      e.preventDefault();
+      setError(false);
+      dispatch({
+        type: "ADD_DECK",
+        deck: {
+          title,
+        },
+      });
+      setTitle("");
+      setMood("happy");
+    } else {
+      setError(true);
+    }
   };
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -34,6 +40,11 @@ const NewDeckForm = ({ setMood }) => {
                 setMood("happy");
               }}
             />
+            {error && (
+              <p class="help is-danger">
+                You need to enter one or more characters.
+              </p>
+            )}
           </div>
           <div className="control">
             <button className="button is-primary" type="submit">

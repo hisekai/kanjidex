@@ -20,8 +20,14 @@ const ListOfKanjis = ({
             className="panel-block"
             style={{ justifyContent: "space-between" }}
           >
-            <span className="panel-icon">{kanji.kanji.query}</span>
-            {kanji.kanji.meaning}
+            <p style={{ textAlign: "left" }}>
+              <span className="panel-icon" style={{ marginTop: "5px" }}>
+                {kanji.kanji.query}
+              </span>
+              <span className="panel-meaning" style={{ marginLeft: "10px" }}>
+                {kanji.kanji.meaning}
+              </span>
+            </p>
             <div className="field has-addons">
               <p className="control">
                 <button

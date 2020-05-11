@@ -81,7 +81,8 @@ const Word = () => {
       <h3 className="title">Searching words/phrases in Japanese</h3>
       <p>
         Even at the beginner level, it is obvious that knowing just what a
-        single kanji character means is not enough sometimes.
+        single kanji character means is not enough sometimes. Searching for
+        words/phrases will provide useful context.
       </p>
       <p>
         You can search for words/phrases in Japanese by simply selecting the
@@ -99,6 +100,11 @@ const Word = () => {
         together they mean train!
       </p>
       <p>
+        Just as the start page indicates, you can search for words/phrases in{" "}
+        <strong>hiragana</strong>, <strong>katakana</strong>,{" "}
+        <strong>kanji</strong> or any combination of those.
+      </p>
+      <p>
         Don't worry, as you can easily check the details of kanji characters in
         the word/phrase search and return back to the results once you're done.
       </p>
@@ -109,6 +115,10 @@ const Word = () => {
         />
       </figure>
       <p>You can search only for one word/phrase at a time.</p>
+      <p>
+        You can save words via the form that is at the very end of each
+        individual word.
+      </p>
     </div>
   );
 };

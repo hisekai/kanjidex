@@ -6,6 +6,9 @@ const StyledHome = styled.section`
   .actions {
     position: relative;
     top: 0 !important;
+    form {
+      max-width: 100% !important;
+    }
   }
 `;
 

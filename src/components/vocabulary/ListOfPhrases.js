@@ -30,10 +30,12 @@ const ListOfPhrases = ({
             className="panel-block"
             style={{ justifyContent: "space-between" }}
           >
-            <strong>
-              {phrase.japanese[0].word && phrase.japanese[0].word}
-            </strong>{" "}
-            {def}
+            <p style={{ textAlign: "left" }}>
+              <strong>
+                {phrase.japanese[0].word && phrase.japanese[0].word}
+              </strong>{" "}
+              <span style={{ marginLeft: "10px" }}>{def}</span>
+            </p>
             <div className="field has-addons">
               <p className="control">
                 <button

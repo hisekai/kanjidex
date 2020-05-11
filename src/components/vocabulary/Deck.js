@@ -13,7 +13,7 @@ const StyledDeck = styled.div`
   }
   #editVocabForm {
     .control {
-      min-width: 98%;
+      min-width: 94%;
     }
   }
 `;
@@ -98,9 +98,13 @@ const Deck = ({
           <div className="content">
             <p className="has-text-left">
               Currently you have{" "}
-              <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong> kanji
-              characters saved <br /> and{" "}
-              <strong>{deck.phrases ? deck.phrases.length : "0"}</strong> words
+              <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong>{" "}
+              <span class="tag is-primary is-light">kanji</span>
+              {deck.kanjis.length > 1 ? "characters" : "character"} saved <br />{" "}
+              and <strong>{deck.phrases ? deck.phrases.length : "0"}</strong>{" "}
+              <span class="tag is-primary is-light">
+                {deck.phrases.length > 1 ? "words" : "word"}
+              </span>
               saved.
             </p>
           </div>

@@ -1,9 +1,15 @@
+/* global chrome */
 import React from "react";
 import KawaiiCat from "./KawaiiCat";
 import Chrome from "../assets/chrome.png";
 import { GitHub } from "react-feather";
 
 const About = () => {
+  const chromeStoreUrl = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}`;
+  const chromeVersion =
+    process.env.NODE_ENV === "production"
+      ? chrome.runtime.getManifest().version
+      : "3.0";
   return (
     <div className="Help">
       <div className="container">
@@ -17,7 +23,7 @@ const About = () => {
             <p className="title is-5">
               Find it on Chrome Store:{" "}
               <a
-                href="https://chrome.google.com/webstore/detail/kanjidex/jhongcfphlabkimfoamdbffjgifglifk"
+                href={chromeStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -30,10 +36,7 @@ const About = () => {
             </p>
             <p className="title is-5">
               Current version:{" "}
-              <span className="tag is-primary is-light">3.0</span>
-            </p>
-            <p className="title is-6">
-              Last update: <span className="has-text-grey">May 1st, 2020</span>
+              <span className="tag is-primary is-light">{chromeVersion}</span>
             </p>
             <p className="title is-6">
               Official site:{" "}
@@ -41,6 +44,7 @@ const About = () => {
                 <a
                   className="has-text-grey"
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://kanjidex.com"
                 >
                   kanjidex.com
@@ -51,6 +55,7 @@ const About = () => {
               Github Repo:{" "}
               <a
                 className="has-text-grey"
+                target="_blank"
                 rel="noopener noreferrer"
                 href="https://github.com/seekwhence/kanjidex"
               >
@@ -102,6 +107,7 @@ const About = () => {
                 The most important part of Kanjidex is the actual source of data
                 for looking up kanji characters and those are the{" "}
                 <a
+                  target="_blank"
                   rel="noopener noreferrer"
                   href="https://github.com/mistval/unofficial-jisho-api"
                 >
@@ -109,6 +115,7 @@ const About = () => {
                 </a>{" "}
                 and{" "}
                 <a
+                  target="_blank"
                   rel="noopener noreferrer"
                   href="https://kanjialive.com/overview-jp/"
                 >
@@ -120,7 +127,11 @@ const About = () => {
               <p>
                 While the <strong>unofficial jisho api</strong> or simply data
                 from{" "}
-                <a rel="noopener noreferrer" href="http://jisho.org/">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="http://jisho.org/"
+                >
                   jisho.org
                 </a>{" "}
                 would suffice, I've found that <strong>Kanji Alive's</strong>{" "}
@@ -130,12 +141,17 @@ const About = () => {
               </p>
               <p>
                 Other technologies and frameworks used include:{" "}
-                <a rel="noopener noreferrer" href="https://bulma.io/">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://bulma.io/"
+                >
                   Bulma
                 </a>
                 ,{" "}
                 <a
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://github.com/feathericons/react-feather"
                 >
                   React Feather
@@ -143,6 +159,7 @@ const About = () => {
                 ,{" "}
                 <a
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://atomiks.github.io/tippyjs/"
                 >
                   Tippy.js
@@ -150,6 +167,7 @@ const About = () => {
                 ,{" "}
                 <a
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://react-kawaii.now.sh/#/React%20Kawaii"
                 >
                   React Kawaii
@@ -157,6 +175,7 @@ const About = () => {
                 , and{" "}
                 <a
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://github.com/mbilbille/dmak"
                 >
                   {" "}
@@ -170,6 +189,7 @@ const About = () => {
                 easily check the Kanjidex project on its own{" "}
                 <a
                   rel="noopener noreferrer"
+                  target="_blank"
                   href="https://github.com/seekwhence/kanjidex"
                 >
                   Github repository

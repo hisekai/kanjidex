@@ -46,7 +46,7 @@ const Navbar = () => {
     >
       <div className="column is-half is-offset-one-quarter">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/kanjidex">
+          <a className="navbar-item" href="./index.html#kanjidex/kanjidex">
             <img src={Logo} alt="Kanjidex Logo" />
           </a>
         </div>

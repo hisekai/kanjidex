@@ -7,6 +7,7 @@ import CreateDeckGif from "../../assets/images/help/vocabulary/kanjidex-create-d
 import EditDeckGif from "../../assets/images/help/vocabulary/kanjidex-edit-deck.gif";
 import KanjidexSingleExplanation from "../../assets/images/help/searching/kanjidex-single-explanation.png";
 import SaveKanji from "../../assets/images/help/vocabulary/kanjidex-save.png";
+import SaveWordGif from "../../assets/images/help/vocabulary/kanjidex-save-word.gif";
 
 const CreatingDecks = () => {
   return (
@@ -34,6 +35,10 @@ const CreatingDecks = () => {
       <figure>
         <img src={CreateDeckGif} alt="Extension popup for saving" />
       </figure>
+      <p>
+        The same way of creating decks is available when you get results for
+        words/phrases.
+      </p>
     </div>
   );
 };
@@ -44,8 +49,7 @@ const EditingDecks = () => {
       <p>
         You can change the name of the deck any time on the vocabulary page by
         simply pressing the edit icon (<Edit3 /> ). Once you're done just click
-        the save icon (<Save />
-        ).{" "}
+        the save icon (<Save />) or hit enter.{" "}
       </p>
       <figure>
         <img
@@ -61,10 +65,11 @@ const DeletingDecks = () => {
     <div>
       <h3 className="title">Deleting Decks</h3>
       <p>
-        Deleting a deck is pretty straightforward. Each deck has a view and a
-        delete button. The view button takes you to the list of kanji characters
-        that are saved in that deck and the delete button removes the deck from
-        your vocabulary page.
+        Deleting a deck is pretty straightforward. Each deck has a view (<Eye />
+        ) and a delete button (<Trash2 />
+        ). The view button takes you to the list of kanji characters that are
+        saved in that deck and the delete button removes the deck from your
+        vocabulary page.
       </p>
       <p>
         The delete action <em>cannot</em> be reversed and all the kanji
@@ -134,10 +139,46 @@ const DeletingKanji = () => {
   );
 };
 
+const SavingWord = () => {
+  return (
+    <div>
+      <h3 className="title">Saving a word</h3>
+      <p>
+        When you search for a word, you can save it via the form that is found
+        on the very end of it. It's done the same way you save a kanji
+        character.
+      </p>
+      <p>You can also create decks with the same form.</p>
+      <figure>
+        <img src={SaveWordGif} alt="A gif showing how to save a word." />
+      </figure>
+    </div>
+  );
+};
+
+const DeletingWord = () => {
+  return (
+    <div>
+      <h3 className="title">Deleting a word</h3>
+      <p>
+        To delete a word, go to the deck where the word is and simply click on
+        the delete icon (<Trash2 />
+        ).
+      </p>
+      <p>
+        To display the word details, click on the view icon (<Eye />
+        ).
+      </p>
+    </div>
+  );
+};
+
 export {
   CreatingDecks,
   EditingDecks,
   DeletingDecks,
   SavingKanji,
   DeletingKanji,
+  SavingWord,
+  DeletingWord,
 };
