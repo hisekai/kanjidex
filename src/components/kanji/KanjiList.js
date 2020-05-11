@@ -23,21 +23,22 @@ const StyledKanjiList = styled.div`
     cursor: pointer;
   }
   .meaning {
-    max-width: 70%;
+    min-width: 60%;
+    max-width: 230px;
   }
 `;
 
 const KanjiList = ({ kanjis, deleteKanji }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [selectedKanji, setSelectedKanji] = useState(null);
-  const handleDelete = e => {
+  const handleDelete = (e) => {
     e.preventDefault();
     const kanji = e.target.parentElement.parentElement.parentElement.querySelector(
       ".kanji"
     ).innerHTML;
     deleteKanji(kanji);
   };
-  const handleView = e => {
+  const handleView = (e) => {
     e.preventDefault();
     setIsVisible(!isVisible);
 
@@ -47,7 +48,7 @@ const KanjiList = ({ kanjis, deleteKanji }) => {
       const item = e.target.parentElement.parentElement.parentElement.querySelector(
         ".kanji"
       ).innerHTML;
-      kanjis.map(kanji => {
+      kanjis.map((kanji) => {
         if (kanji.kanji.query === item) {
           setSelectedKanji(kanji);
         }
