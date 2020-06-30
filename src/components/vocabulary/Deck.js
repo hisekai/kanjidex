@@ -97,10 +97,10 @@ const Deck = ({
         <div className="card-content">
           <div className="content">
             <p className="has-text-left">
-              Currently you have{" "}
-              <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong>{" "}
-              <span class="tag is-primary is-light">kanji</span>
-              {deck.kanjis.length > 1 ? "characters" : "character"} saved <br />{" "}
+              You have <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong>{" "}
+              <span class="tag is-primary is-light">
+                {deck.kanjis.length > 1 ? "kanjis" : "kanji"}
+              </span>{" "}
               and <strong>{deck.phrases ? deck.phrases.length : "0"}</strong>{" "}
               <span class="tag is-primary is-light">
                 {deck.phrases.length > 1 ? "words" : "word"}

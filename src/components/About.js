@@ -82,12 +82,11 @@ const About = () => {
                 for any questions or requests that you may have.
               </p>
               <p>
-                With that out of the way, Kanjidex is a Chrome extension with
-                the primary objective being to give you more details on any
-                kanji character that you encounter while browsing the web. You
-                can look up kanji characters and words, and store them in your
-                vocabulary bank in case you wish to remind yourself of them
-                later.
+                Kanjidex is a Chrome extension with the primary objective being
+                to give you more details on any kanji character that you
+                encounter while browsing the web. You can look up kanji
+                characters and words, and store them in your vocabulary bank to
+                remind yourself of them later.
               </p>
               <p>
                 There is no data tracking or account creation needed. Everything
@@ -98,14 +97,14 @@ const About = () => {
               </p>
               <h2 className="is-size-5">Technologies used</h2>
               <p>
-                Kanjidex was primarily written in plain JavaScript but as
-                Kanjidex grew, it was rewritten in React using the
-                create-react-app which also made it easier to create a
-                maintainable code and facilitated adding additional features.
+                Kanjidex was primarily written in plain JavaScript. As Kanjidex
+                grew, it was rewritten in React using the create-react-app. That
+                made it easier to create a maintainable code and facilitated
+                adding additional features.
               </p>
               <p>
                 The most important part of Kanjidex is the actual source of data
-                for looking up kanji characters and those are the{" "}
+                for looking up kanji characters. Those are the{" "}
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -125,7 +124,7 @@ const About = () => {
                 .
               </p>
               <p>
-                While the <strong>unofficial jisho api</strong> or simply data
+                While the <strong>unofficial jisho API</strong> or simply data
                 from{" "}
                 <a
                   rel="noopener noreferrer"
@@ -135,9 +134,9 @@ const About = () => {
                   jisho.org
                 </a>{" "}
                 would suffice, I've found that <strong>Kanji Alive's</strong>{" "}
-                animations and audio examples were extremely helpful in my very
-                beginnings of learning the Japanese language which is why I
-                thought it was crucial to include it in Kanjidex.
+                animations and audio examples were extremely helpful in studying
+                the Japanese language, which is why I decided to include it in
+                Kanjidex.
               </p>
               <p>
                 Other technologies and frameworks used include:{" "}
@@ -184,9 +183,9 @@ const About = () => {
                 .
               </p>
               <p>
-                There are a few others that are no less important and I haven't
-                mentioned because then the list would be too long, so you can
-                easily check the Kanjidex project on its own{" "}
+                There are a few others that are no less important and haven't
+                been mentioned because then the list would be too long, so you
+                can easily check the Kanjidex project on its own{" "}
                 <a
                   rel="noopener noreferrer"
                   target="_blank"
@@ -197,12 +196,12 @@ const About = () => {
                 .
               </p>
               <p>
-                Feel free to contribute to the project or modify it to your own
-                liking if those technologies aren't foreign to you.
+                Feel free to contribute to the project or modify it as you see
+                fit.
               </p>
               <p style={{ paddingBottom: "40px" }}>
                 And lastly, I wish you happy studying and lots of success in
-                whatever you do and pursue. Thank you again!
+                whatever you do and pursue.
               </p>
             </div>
           </div>

@@ -6,9 +6,9 @@ const SearchForm = ({
   setQuery,
   queryType,
   handleQueryType,
-  setMood
+  setMood,
 }) => {
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.target.value ? setMood("excited") : setMood("happy");
     setQuery(e.target.value);
   };
@@ -16,7 +16,7 @@ const SearchForm = ({
     <form
       id="kanjidex-form"
       onSubmit={handleSubmit}
-      style={{ marginBottom: "20px" }}
+      style={{ marginBottom: "10px" }}
     >
       <div className="field has-addons">
         <p className="control is-expanded">
@@ -33,7 +33,7 @@ const SearchForm = ({
           <span className="select is-primary">
             <select
               value={queryType}
-              onChange={e => handleQueryType(e.target.value)}
+              onChange={(e) => handleQueryType(e.target.value)}
             >
               <option value="kanji">Kanji</option>
               <option value="phrase">Word</option>

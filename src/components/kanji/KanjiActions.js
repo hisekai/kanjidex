@@ -9,18 +9,24 @@ import uuid from "uuid/v4";
 const StyledKanjiActions = styled.div`
   background-color: #fff;
   position: absolute;
-  top: -50px;
+  top: -53px;
+  left: -2px;
   min-height: 30px;
-  max-height: 50px;
-  width: 100%;
+  max-height: 55px;
+  width: 101%;
   max-width: 655px;
-  padding: 10px;
   z-index: 999;
   #back {
     position: absolute;
-    left: 0;
+    left: -3px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    border: none !important;
+    &:hover {
+      background: transparent;
+      border: none;
+      color: ${Colors.green};
+    }
   }
   form {
     max-width: 80%;
@@ -43,6 +49,8 @@ const StyledKanjiActions = styled.div`
   .control > div > div {
     min-height: 40px;
     border-radius: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 `;
 
@@ -83,12 +91,18 @@ const KanjiActions = ({ handleView, kanji }) => {
         id="back"
         className="button is-primary is-outlined"
         onClick={(e) => handleView(e)}
+        title="Go back"
       >
         <ArrowLeft />{" "}
       </button>
       <form onSubmit={handleSubmit}>
         <div className="field has-addons" style={{ marginLeft: "40px" }}>
-          <div className="control is-expanded" style={{ minWidth: "180px" }}>
+          <div
+            className="control is-expanded"
+            style={{
+              minWidth: "180px",
+            }}
+          >
             <CreatableSelect
               isClearable
               onChange={(option) => setOption(option)}
@@ -106,6 +120,7 @@ const KanjiActions = ({ handleView, kanji }) => {
               target="_blank"
               className="vocab-icon"
               href="./index.html#/kanjidex/vocabulary"
+              title="Vocabulary"
             >
               <BookOpen />
             </a>

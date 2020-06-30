@@ -18,7 +18,7 @@ const StyledKanjiDetails = styled.div`
     max-width: 648px;
   }
   .tabs-content {
-    height: 530px;
+    height: 520px;
     overflow-y: auto;
   }
   .tabs-content-inner {
@@ -93,19 +93,19 @@ const KanjiDetails = ({ kanji }) => {
         <ul>
           <li
             className={tab === "kanji" ? "is-active" : ""}
-            onClick={e => handleClick(e, "kanji")}
+            onClick={(e) => handleClick(e, "kanji")}
           >
             <a href="/">Kanji</a>
           </li>
           <li
             className={tab === "radical" ? "is-active" : ""}
-            onClick={e => handleClick(e, "radical")}
+            onClick={(e) => handleClick(e, "radical")}
           >
             <a href="/">Radical</a>
           </li>
           <li
             className={tab === "examples" ? "is-active" : ""}
-            onClick={e => handleClick(e, "examples")}
+            onClick={(e) => handleClick(e, "examples")}
           >
             <a href="/">Examples</a>
           </li>

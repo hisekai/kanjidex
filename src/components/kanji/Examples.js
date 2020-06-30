@@ -25,15 +25,17 @@ const StyledExamples = styled.div`
     }
   }
   .level-icon:hover {
-    cursor: pointer;
     -webkit-box-shadow: -1px -1px 5px -1px rgba(240, 82, 82, 0.86);
     -moz-box-shadow: -1px -1px 5px -1px rgba(240, 82, 82, 0.86);
     box-shadow: -1px -1px 5px -1px rgba(240, 82, 82, 0.86);
   }
+  .level-icon > *:hover {
+    cursor: pointer;
+  }
 `;
 
 const Examples = ({ examples }) => {
-  const handleClick = e => {
+  const handleClick = (e) => {
     let audioFile = e.target.parentElement.parentElement.parentElement.querySelector(
       "audio"
     );

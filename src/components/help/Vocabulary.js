@@ -29,8 +29,7 @@ const CreatingDecks = () => {
         It's more likely that you're going to come up with deck names the more
         you bump into new kanji characters. Once you have the kanji details
         displayed, enter the new name in the form and then click{" "}
-        <strong>Create deck</strong> (and don't forget to press the save button
-        if you want).
+        <strong>Create deck</strong>.
       </p>
       <figure>
         <img src={CreateDeckGif} alt="Extension popup for saving" />
@@ -97,9 +96,9 @@ const SavingKanji = () => {
       </figure>
       <p>
         If you already have existing decks, you're going to have a list of decks
-        to choose from. If not, fret not! You can create a new deck by typing
-        the name in the form and pressing "Create". Don't forget to save once
-        you've created the deck!
+        to choose from. If not, you can create a new deck by typing the name in
+        the form and pressing "Create". Don't forget to save once you've created
+        the deck!
       </p>
       <div className="columns">
         <div className="column">

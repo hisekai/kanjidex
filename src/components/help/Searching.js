@@ -36,7 +36,7 @@ const Japanese = () => {
           <figure>
             <img src={KanjiSingle} alt="Shows a single kanji" />
             <figcaption>
-              If there's only a single kanji, it will directly display it.
+              If there's only a single kanji, it will be directly displayed.
             </figcaption>
           </figure>
         </div>
@@ -95,9 +95,9 @@ const Word = () => {
         />
       </figure>
       <p>
-        Searching words is basically looking for kanji compounds to expand your
-        vocabulary. For example, 電 means electricity and 車 means car and
-        together they mean train!
+        Searching words is basically looking up kanji compounds (jukugo) to
+        expand your vocabulary. For example, 電 means electricity and 車 means
+        car but together they mean train!
       </p>
       <p>
         Just as the start page indicates, you can search for words/phrases in{" "}

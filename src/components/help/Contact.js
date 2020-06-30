@@ -12,9 +12,7 @@ const Contact = () => {
       </p>
       <p>
         Likewise, feel free to give any sort of feedback or even just say hi. I
-        will usually respond within two days unless I'm somewhere on the road
-        (hopefully, somewhere in Japan) in which case it might be three or four
-        days.
+        will usually respond within two days.
       </p>
     </div>
   );
