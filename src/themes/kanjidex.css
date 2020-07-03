@@ -15,48 +15,52 @@
 
 /* kanjidex tooltip */
 .tippy-box[data-theme~="kanjidex"] {
-  background: #fff !important;
   color: #333;
   -webkit-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
   -moz-box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
   box-shadow: -5px 9px 18px -8px rgba(128, 121, 128, 1);
-  min-width: 550px;
   padding: 10px 20px;
+}
+
+.tippy-box,
+.tippy-content {
+  position: relative;
   z-index: 99999 !important;
+  background: #fff !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .row {
   display: flex;
   background: #fff !important;
-  z-index: 99999 !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-title {
-  font-size: 24px;
+  font-size: 18px;
   margin: none !important;
-  margin-bottom: 15px !important;
+  margin-bottom: 8px !important;
   color: #333 !important;
-  line-height: 30px !important;
+  line-height: 22px !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-info {
-  font-size: 18px !important;
+  font-size: 16px !important;
   margin: none !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
   color: #333 !important;
-  line-height: 26px !important;
+  line-height: 20px !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] img {
-  height: auto;
-  width: 97%;
-  margin-bottom: 10px !important;
+  max-height: 80px;
+  width: auto;
+  max-width: 98%;
+  margin-bottom: 5px !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] a {
-  margin: 15px 0 !important;
+  margin: 5px 0 !important;
   color: #f05252 !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-title,
@@ -68,6 +72,7 @@
   border: none !important;
   font-weight: normal !important;
   padding: none !important;
+  max-width: 400px;
 }
 
 .tippy-box[data-theme~="kanjidex"] .kanjidex-title::after,
@@ -86,10 +91,6 @@
 
 .tippy-box[data-theme~="kanjidex"] strong {
   color: hsl(0, 0%, 39%) !important;
-}
-
-.tippy-box[data-theme~="kanjidex"] p {
-  line-height: 24px !important;
 }
 
 /* styling for the arrow */
