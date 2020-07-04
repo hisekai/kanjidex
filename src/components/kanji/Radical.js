@@ -8,12 +8,12 @@ import styled from "styled-components";
 
 const StyledRadical = styled.div`
   .Radical-slider {
-    min-height: 180px;
+    min-height: 190px;
     img {
       height: 109px;
       width: 109px;
       display: block;
-      margin: 20px auto 10px auto;
+      margin: 20px auto 15px auto;
     }
     .field.has-addons {
       justify-content: center;
@@ -29,7 +29,11 @@ const StyledRadical = styled.div`
     margin-top: -1.5rem;
   }
   .title.is-5 {
+    margin-top: -5px;
     margin-bottom: 0px;
+  }
+  button {
+    border-radius: 50%;
   }
   @media (min-width: 400px) {
     .title.is-5 {
@@ -43,7 +47,7 @@ const StyledRadical = styled.div`
 
 const Radical = ({ radical, radicalAlt }) => {
   const [count, setCount] = useState(0);
-  const handleClick = operation => {
+  const handleClick = (operation) => {
     if (count === radical.animation.length - 1 && operation + 1) {
       setCount(0);
     } else if (count === 0 && operation === -1) {
@@ -89,7 +93,7 @@ const Radical = ({ radical, radicalAlt }) => {
               <p>
                 <strong>Forms: </strong>
                 {radicalAlt && radicalAlt.forms
-                  ? radicalAlt.forms.map(form => form).join(", ")
+                  ? radicalAlt.forms.map((form) => form).join(", ")
                   : "Not found"}
               </p>
             </div>
