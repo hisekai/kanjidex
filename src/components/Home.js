@@ -5,6 +5,7 @@ import SearchForm from "./SearchForm";
 import Loader from "./layout/Loader";
 import DisplayKanji from "./kanji/DisplayKanji";
 import DisplayPhrase from "./phrase/DisplayPhrase";
+import KawaiiCat from "./KawaiiCat";
 
 const Home = () => {
   const [kanji, setKanji] = useState([]);
@@ -14,6 +15,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [mood, setMood] = useState("happy");
+  const isOnline = navigator.onLine;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (query) {
@@ -69,7 +71,7 @@ const Home = () => {
     });
   }
 
-  return (
+  return isOnline ? (
     <div className="column is-half is-offset-one-quarter">
       <SearchForm
         query={query}
@@ -109,6 +111,34 @@ const Home = () => {
           error={error}
         />
       )}
+    </div>
+  ) : (
+    <div
+      className="column is-half is-offset-one-quarter"
+      style={{ textAlign: "center" }}
+    >
+      <KawaiiCat mood="happy" />
+      <h2 className="title is-5">Sorry, you're currently offline.</h2>
+      <p>You need to be online to be able to search.</p>
+      <p>
+        You can still check your vocabulary on{" "}
+        <a
+          target="_blank"
+          className="vocab-icon"
+          href="./index.html#/kanjidex/vocabulary"
+        >
+          this link
+        </a>{" "}
+        as well as get{" "}
+        <a
+          target="_blank"
+          className="vocab-icon"
+          href="./index.html#/kanjidex/help"
+        >
+          help on this link
+        </a>
+        .
+      </p>
     </div>
   );
 };
