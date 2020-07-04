@@ -41,7 +41,6 @@ function showInfo(kanji) {
     placement: "auto",
     role: "tooltip",
   });
-  console.log(kanji);
 }
 
 // when Kanjidex gets message from background about the highlighted kanji
