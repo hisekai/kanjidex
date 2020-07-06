@@ -4,6 +4,9 @@ import { Edit3, Eye, Trash2, Save } from "react-feather";
 import styled from "styled-components";
 
 const StyledDeck = styled.div`
+  .card-header {
+    min-height: 64px;
+  }
   button.is-text,
   a.is-text {
     text-decoration: none;
@@ -13,8 +16,12 @@ const StyledDeck = styled.div`
   }
   #editVocabForm {
     .control {
-      min-width: 94%;
+      min-width: 106%;
     }
+  }
+  .control {
+    margin-top: 12px;
+    margin-left: 10px;
   }
 `;
 
@@ -64,15 +71,15 @@ const Deck = ({
               <div className="field has-addons">
                 <div className="control is-fullwidth">
                   <input
-                    className="input is-primary is-medium"
+                    className="input is-primary"
                     type="text"
                     placeholder={deck.title}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
-                <div className="control">
-                  <button className="button is-primary is-medium" type="submit">
+                <div className="control" style={{ marginLeft: "0" }}>
+                  <button className="button is-primary" type="submit">
                     <span className="icon">
                       <Save />
                     </span>

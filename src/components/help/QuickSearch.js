@@ -42,11 +42,6 @@ const QuickSearch = () => {
           that it can happen.
         </div>
       </article>
-      <p>
-        If you wish to find out more about the kanji that you searched for via
-        the quick search option, when you hover over the highlighted, you can
-        click on the jisho.org link that's within the tooltip.{" "}
-      </p>
     </div>
   );
 };

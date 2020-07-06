@@ -156,7 +156,7 @@ const Phrase = ({ phrase, setPhrase, setMood }) => {
       <div
         style={{ display: isVisible ? "none" : "block", position: "relative" }}
       >
-        <KanjiActions handleView={handleView} />
+        <KanjiActions handleView={handleView} kanji={kanji} />
         <KanjiDetails kanji={kanji} />
       </div>
     </React.Fragment>

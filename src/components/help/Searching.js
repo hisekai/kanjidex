@@ -1,9 +1,5 @@
 import React from "react";
 // images
-import SearchingInJapanese from "../../assets/images/help/searching/searching-in-japanese.png";
-import KanjiList from "../../assets/images/help/searching/kanjidex-list.png";
-import KanjiSingle from "../../assets/images/help/searching/kanjidex-single.png";
-import KanjidexSingleExplanation from "../../assets/images/help/searching/kanjidex-single-explanation.png";
 import KanjidexSelectGif from "../../assets/images/help/searching/kanjidex-select-instant.gif";
 import KanjidexWordSingle from "../../assets/images/help/searching/kanjidex-word-single.png";
 import KanjidexWordGif from "../../assets/images/help/searching/kanjidex-word.gif";
@@ -12,66 +8,36 @@ import KanjidexEnglish from "../../assets/images/help/searching/kanjidex-english
 const Japanese = () => {
   return (
     <div>
-      <h3 className="title">Searching in Japanese</h3>
-      <p>Searching in Japanese is the default option when you open Kanjidex.</p>
-      <figure>
-        <img src={SearchingInJapanese} alt="Search in japanese" />
-      </figure>
+      <h3 className="title">Searching for Kanji</h3>
+      <p>Searching for kanji is the default option when you open Kanjidex.</p>
 
-      <p>
-        While fairly straightforward, it is important to note that you can
-        search for multiple kanji characters as well as just looking up a single
-        one.
-      </p>
-      <div className="columns">
-        <div className="column">
+      <p>Searching for kanji allows you to do the following:</p>
+      <ul>
+        <li>Search for a single or even multiple kanji characters</li>
+        <li>
+          The search query doesn't have to be all kanji characters or even
+          Japanese. As long as there's at least one kanji character, Kanjidex
+          will return a result.
+        </li>
+        <li>You can save a kanji character when it's displayed.</li>
+      </ul>
+      <article className="message is-info">
+        <div className="message-header">
+          <p>Tip</p>
+        </div>
+        <div className="message-body">
+          If you highlight any kanji characters on a web page, the moment you
+          click on the Kanjidex popup, you should have the higlighted kanji
+          characters already being searched for. No need for copy and paste!
           <figure>
-            <img src={KanjiList} alt="Shows a list of two kanji characters" />
-            <figcaption>
-              It is possible to search for two or more kanji characters at once
-            </figcaption>
+            <img
+              src={KanjidexSelectGif}
+              alt="Shows the instant search when text selected"
+            />
           </figure>
         </div>
-        <div className="column">
-          <figure>
-            <img src={KanjiSingle} alt="Shows a single kanji" />
-            <figcaption>
-              If there's only a single kanji, it will be directly displayed.
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-      <p>
-        If you highlight any kanji characters on a web page, the moment you
-        click on the Kanjidex popup, you should have the higlighted kanji
-        characters already being searched for. No need for copy and paste!
-      </p>
-      <figure>
-        <img
-          src={KanjidexSelectGif}
-          alt="Shows the instant search when text selected"
-        />
-        <figcaption>
-          The popup will insantly search for the selected text on a page.
-        </figcaption>
-      </figure>
-      <p>
-        Another useful tip is that the selected text{" "}
-        <strong>doesn't have to be</strong> all in Japanese as long as there's
-        at least one kanji character, Kanjidex will parse it and return results
-        if found.
-      </p>
-      <p>
-        The single kanji character has a form from which you can save it in an
-        existing deck or create a new one. You can also go back to a list/start
-        page. And there's a book icon that will take you to the vocabulary page.
-      </p>
-      <figure>
-        <img
-          src={KanjidexSingleExplanation}
-          alt="A visual guide for the single kanji"
-        />
-      </figure>
+      </article>
+      <hr />
     </div>
   );
 };
@@ -133,10 +99,10 @@ const English = () => {
       <p>
         To search in English simply select the option "English" in the dropdown.
       </p>
+      <p>You can search only for one word at a time.</p>
       <figure>
         <img src={KanjidexEnglish} alt="The startpage with a dropdown" />
       </figure>
-      <p>You can search only for one word at a time.</p>
     </div>
   );
 };
