@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { VocabContext } from "../../contexts/VocabContext";
 import { SpeechBubble } from "react-kawaii";
 import { Search } from "react-feather";
@@ -55,7 +55,7 @@ const DeckDetails = (props) => {
       <div className="columns">
         <div className="column is-one-quarter">
           <nav className="panel">
-            <p className="panel-heading">Currently Saved Kanji</p>
+            <p className="panel-heading">Currently saved</p>
             <div className="panel-block">
               <p className="control has-icons-left">
                 <input
