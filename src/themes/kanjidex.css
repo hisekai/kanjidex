@@ -5,6 +5,12 @@
   src: url("./../../public/fonts/NotoSansJP-Regular.otf") format("otf");
 }
 
+.kanjidex-wrapper,
+.kanjidex-wrapper span {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .kanjidex-tooltip {
   border-bottom: dashed 1px indianred;
 }

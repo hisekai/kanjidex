@@ -1,14 +1,31 @@
 /* global chrome */
 import tippy from "tippy.js";
 
+function wrapSelectedText() {
+  if (!document.querySelector(".kanjidex-wrapper")) {
+    let selection = window.getSelection().getRangeAt(0);
+    let selectedText = selection.extractContents();
+    let span = document.createElement("span");
+    span.classList.add("kanjidex-wrapper");
+    span.appendChild(selectedText);
+    selection.insertNode(span);
+  }
+}
+
 function showInfo(kanji) {
   // get the kanji character
   const regex = new RegExp(`(${kanji.query})`);
-  const selection = window.getSelection();
-  const content = selection.anchorNode.parentElement;
-  // split the parent element of the selection
+  // first check if there's already a span with kanjidex-wrapper class
+  // if yes, remove the class
+  if (document.querySelector(".kanjidex-wrapper")) {
+    let targetEl = document.querySelector(".kanjidex-wrapper");
+    targetEl.classList.remove("kanjidex-wrapper");
+  }
+  // wrap the selection with kanjidex-wrapper
+  wrapSelectedText();
+  // change the content to add information
+  let content = document.querySelector(".kanjidex-wrapper");
   let parts = content.innerHTML.split(regex);
-
   let result = parts.map((part) => {
     if (part.match(regex) && part.indexOf("span") > -1) {
       return part;
