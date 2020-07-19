@@ -5,7 +5,7 @@ import Chrome from "../assets/chrome.png";
 import { GitHub } from "react-feather";
 
 const About = () => {
-  const chromeStoreUrl = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}`;
+  const chromeStoreUrl = `https://chrome.google.com/webstore/detail/kanjidex/jhongcfphlabkimfoamdbffjgifglifk`;
   const chromeVersion =
     process.env.NODE_ENV === "production"
       ? chrome.runtime.getManifest().version
@@ -57,7 +57,7 @@ const About = () => {
                 className="has-text-grey"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://github.com/seekwhence/kanjidex"
+                href="https://github.com/hisekai/kanjidex"
               >
                 <GitHub />
               </a>
