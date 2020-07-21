@@ -46,7 +46,8 @@ const StyledRadical = styled.div`
 `;
 
 const Radical = ({ radical, radicalAlt }) => {
-  const [count, setCount] = useState(0);
+  const radicalAnimationNum = radical.animation.length - 1;
+  const [count, setCount] = useState(radicalAnimationNum);
   const handleClick = (operation) => {
     if (count === radical.animation.length - 1 && operation + 1) {
       setCount(0);
@@ -59,29 +60,35 @@ const Radical = ({ radical, radicalAlt }) => {
   return radical ? (
     <StyledRadical className="Radical">
       <div className="Radical-slider">
-        <img src={radical.animation[count]} alt="" />
-        <div className="field has-addons">
-          <p className="control ">
-            <button
-              className="button is-medium is-primary is-outlined"
-              onClick={() => handleClick(-1)}
-            >
-              <span className="icon">
-                <ArrowLeft />
-              </span>
-            </button>
-          </p>
-          <p className="control">
-            <button
-              className="button is-medium is-primary is-outlined"
-              onClick={() => handleClick(+1)}
-            >
-              <span className="icon">
-                <ArrowRight />
-              </span>
-            </button>
-          </p>
-        </div>
+        {radical.animation ? (
+          <img src={radical.animation[count]} alt="" />
+        ) : (
+          radicalAlt.symbol
+        )}
+        {radical.animation && (
+          <div className="field has-addons">
+            <p className="control ">
+              <button
+                className="button is-medium is-primary is-outlined"
+                onClick={() => handleClick(-1)}
+              >
+                <span className="icon">
+                  <ArrowLeft />
+                </span>
+              </button>
+            </p>
+            <p className="control">
+              <button
+                className="button is-medium is-primary is-outlined"
+                onClick={() => handleClick(+1)}
+              >
+                <span className="icon">
+                  <ArrowRight />
+                </span>
+              </button>
+            </p>
+          </div>
+        )}
       </div>
       <h2 className="title is-5" style={{ textAlign: "center" }}>
         {radical.meaning.english}

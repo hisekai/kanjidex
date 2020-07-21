@@ -45,12 +45,12 @@ const Kanji = ({ kanji }) => {
         <div className="level-item">
           <p>
             <strong>Onyomi:</strong>
-            {kanji.onyomi
+            {kanji.onyomi.length > 0
               ? kanji.onyomi
                   .map((on) => JSON.stringify(on))
                   .join(", ")
                   .replace(/"/g, "")
-              : "not found"}
+              : "Not found"}
           </p>
         </div>
       </Level>
@@ -58,12 +58,12 @@ const Kanji = ({ kanji }) => {
         <div className="level-item">
           <p>
             <strong>Kunyomi:</strong>
-            {kanji.kunyomi
+            {kanji.kunyomi.length > 0
               ? kanji.kunyomi
                   .map((kun) => JSON.stringify(kun))
                   .join(", ")
                   .replace(/"/g, "")
-              : "not found"}
+              : "Not found"}
           </p>
         </div>
       </Level>

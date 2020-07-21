@@ -3,7 +3,7 @@ import Kanji from "./Kanji";
 import Radical from "../kanji/Radical";
 import Examples from "../kanji/Examples";
 
-const CurrentKanji = ({ kanji, radical, examples }) => {
+const CurrentKanji = ({ kanji, radical, radicalAlt, examples }) => {
   return (
     <div className="columns is-multiline">
       <div className="column">
@@ -17,7 +17,7 @@ const CurrentKanji = ({ kanji, radical, examples }) => {
         >
           Radical
         </p>
-        <Radical radical={radical} />
+        <Radical radical={radical} radicalAlt={radicalAlt} />
       </div>
       <div className="column">
         <p className="subtitle is-4 has-text-grey-light">Examples</p>

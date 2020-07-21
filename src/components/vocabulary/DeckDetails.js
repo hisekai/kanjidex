@@ -111,6 +111,7 @@ const DeckDetails = (props) => {
               <CurrentKanji
                 kanji={currentKanji.kanji}
                 radical={currentKanji.radical}
+                radicalAlt={currentKanji.kanji.radical}
                 examples={currentKanji.examples}
               />
             ) : (
