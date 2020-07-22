@@ -40,13 +40,9 @@
   "permissions": [
     "<all_urls>",
     "*://*.jisho.org/*",
-    "*://*/*",
-    "http://*/",
-    "https://*/",
     "activeTab",
     "contextMenus",
     "storage",
-    "notifications",
-    "tabs"
+    "notifications"
   ]
 }
