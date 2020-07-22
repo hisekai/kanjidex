@@ -16,7 +16,7 @@ You will need both Node.js and npm installed as well as a Chrome or Chromium bro
 Getting started is really easy. First, download the repository:
 
 ```
-git clone https://github.com/seekwhence/kanjidex.git
+git clone https://github.com/hisekai/kanjidex.git
 ```
 
 then install the npm modules:
