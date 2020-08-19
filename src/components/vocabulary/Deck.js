@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { VocabContext } from "../../contexts/VocabContext";
-import { Edit3, Eye, Trash2, Save } from "react-feather";
+import { Edit3, Eye, Trash2, Save, Download } from "react-feather";
 import styled from "styled-components";
+import { getCVS } from "../../helpers/cvs";
 
 const StyledDeck = styled.div`
   .card-header {
@@ -60,6 +61,9 @@ const Deck = ({
       });
     }
   };
+  const handleDownload = () => {
+    getCVS(deck.title, deck.kanjis, deck.phrases);
+  };
 
   return (
     <div className="column is-4">
@@ -103,7 +107,7 @@ const Deck = ({
         </header>
         <div className="card-content">
           <div className="content">
-            <p className="has-text-left">
+            <p className="has-text-centered">
               You have <strong>{deck.kanjis ? deck.kanjis.length : "0"}</strong>{" "}
               <span class="tag is-primary is-light">
                 {deck.kanjis.length > 1 ? "kanjis" : "kanji"}
@@ -114,6 +118,12 @@ const Deck = ({
               </span>
               saved.
             </p>
+            <button class="button is-primary" onClick={() => handleDownload()}>
+              <span class="icon">
+                <Download />
+              </span>
+              <span>Export to Anki</span>
+            </button>
           </div>
         </div>
         <footer className="card-footer">

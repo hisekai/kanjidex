@@ -130,7 +130,7 @@ const DeckDetails = (props) => {
                     ? "Select a kanji to get more details."
                     : "You don't have any kanji characters saved"
                   : deck.phrases.length !== 0
-                  ? "Select a phrase to get more details."
+                  ? "Select a word to get more details."
                   : "You don't have any words saved"}
               </h4>
             </div>
