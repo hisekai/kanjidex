@@ -8,6 +8,7 @@ import EditDeckGif from "../../assets/images/help/vocabulary/kanjidex-edit-deck.
 import KanjidexSingleExplanation from "../../assets/images/help/searching/kanjidex-single-explanation.png";
 import SaveKanji from "../../assets/images/help/vocabulary/kanjidex-save.png";
 import SaveWordGif from "../../assets/images/help/vocabulary/kanjidex-save-word.gif";
+import AnkiImg from "../../assets/images/help/vocabulary/anki.png";
 
 const CreatingDecks = () => {
   return (
@@ -172,6 +173,43 @@ const DeletingWord = () => {
   );
 };
 
+const ExportingToAnki = () => {
+  return (
+    <div>
+      <h3 className="title">Exporting to Anki</h3>
+      <p>
+        There's an available option to export both your stored kanji and words
+        alltogether from a single deck to Anki.
+      </p>
+      <p>
+        All you need to do is click the "Export to Anki" button located on a
+        single deck, and you will download a <em>.cvs</em> file containing all
+        the kanji and words.
+      </p>
+      <p>
+        The exported kanji and words will for now contain only the crucial
+        information like the Japanese writing and the English meaning.
+      </p>
+      <article className="message is-info">
+        <div className="message-header">
+          <p>Important</p>
+        </div>
+        <div className="message-body">
+          When importing the .cvs file in Anki, don't forget to select the
+          checkbox that says <strong>Allow HTML in fields</strong>. Otherwise,
+          the deck cards won't look nice.
+          <figure>
+            <img
+              src={AnkiImg}
+              alt="Shows the options when importing the file in Anki interface"
+            />
+          </figure>
+        </div>
+      </article>
+    </div>
+  );
+};
+
 export {
   CreatingDecks,
   EditingDecks,
@@ -180,4 +218,5 @@ export {
   DeletingKanji,
   SavingWord,
   DeletingWord,
+  ExportingToAnki,
 };
