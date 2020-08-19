@@ -39,9 +39,10 @@ function showInfo(kanji) {
         kanji.onyomi.length > 0 ? kanji.onyomi : "not found"
       }</p><p class='kanjidex-info'><strong>Kunyomi: </strong>${
         kanji.kunyomi.length > 0 ? kanji.kunyomi : "not found"
-      }</p><p class='kanjidex-info'><img src='//images.weserv.nl/?url=${
-        kanji.strokeOrderDiagramUri
-      }' alt='${kanji.meaning}' /></p></div></div>">${part}</span>`;
+      }</p><p class='kanjidex-info'><img src='//images.weserv.nl/?url=${kanji.strokeOrderDiagramUri.replace(
+        /(^\w+:|^)\/\//,
+        ""
+      )}' alt='${kanji.meaning}' /></p></div></div>">${part}</span>`;
     }
 
     return part;
