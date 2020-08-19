@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Level from "../layout/Level";
 import Info from "../layout/Info";
 import KawaiiCat from "../KawaiiCat";
 import { Colors } from "../../helpers/theme";
 import styled from "styled-components";
-import { Play } from "react-feather";
-import feather from "feather-icons";
+import { Play, Loader } from "react-feather";
 
 const StyledExamples = styled.div`
   .level {
@@ -35,19 +34,17 @@ const StyledExamples = styled.div`
 `;
 
 const Examples = ({ examples }) => {
-  const handleClick = (e) => {
-    let audioFile = e.target.parentElement.parentElement.parentElement.querySelector(
-      "audio"
-    );
-    let audioIcon = e.target.parentElement.parentElement.parentElement.querySelector(
-      ".level-icon"
-    );
-    audioIcon.innerHTML = `${feather.icons.loader.toSvg()}`;
-    audioFile.play();
-    audioFile.addEventListener("ended", () => {
-      audioIcon.innerHTML = `${feather.icons.play.toSvg()}`;
-    });
+  const [audio, setAudio] = useState(new Audio(null));
+  const [isPlaying, setPlaying] = useState(false);
+
+  const handleClick = (audioLink) => {
+    setAudio(new Audio(audioLink));
   };
+
+  useEffect(() => {
+    audio ? audio.play() && setPlaying(true) : audio.pause();
+    audio.addEventListener("ended", () => setPlaying(false));
+  }, [audio]);
   return examples ? (
     <StyledExamples style={{ paddingBottom: "60px", paddingTop: "20px" }}>
       {!examples.results
@@ -55,8 +52,17 @@ const Examples = ({ examples }) => {
             return (
               <Level key={index}>
                 <div className="level-item">
-                  <span className="level-icon" onClick={handleClick}>
-                    <Play />
+                  <span
+                    className="level-icon"
+                    onClick={(e) => {
+                      handleClick(example.audio.mp3);
+                    }}
+                  >
+                    {example.audio.mp3 === audio.src && isPlaying ? (
+                      <Loader />
+                    ) : (
+                      <Play />
+                    )}
                   </span>
                   <audio>
                     <source src={example.audio.mp3} type="audio/mpeg" />
