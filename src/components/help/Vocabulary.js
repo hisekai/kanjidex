@@ -179,16 +179,27 @@ const ExportingToAnki = () => {
       <h3 className="title">Exporting to Anki</h3>
       <p>
         There's an available option to export both your stored kanji and words
-        alltogether from a single deck to Anki.
+        altogether from a single deck to Anki.
+      </p>
+      <p>
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://apps.ankiweb.net/"
+        >
+          Anki
+        </a>{" "}
+        is a free flashcard program which is fairly popular amongst those who
+        study Japanese and other languages as well.{" "}
       </p>
       <p>
         All you need to do is click the "Export to Anki" button located on a
-        single deck, and you will download a <em>.cvs</em> file containing all
-        the kanji and words.
+        single deck which will then download a <em>.cvs</em> file containing all
+        the kanji and words from that deck.
       </p>
       <p>
-        The exported kanji and words will for now contain only the crucial
-        information like the Japanese writing and the English meaning.
+        The exported kanji and words will, for now, contain only the crucial
+        information.
       </p>
       <article className="message is-info">
         <div className="message-header">

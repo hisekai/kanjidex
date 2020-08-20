@@ -62,7 +62,7 @@ const Deck = ({
     }
   };
   const handleDownload = () => {
-    getCVS(deck.title, deck.kanjis, deck.phrases);
+    getCVS(deck.kanjis, deck.phrases);
   };
 
   return (
@@ -118,12 +118,18 @@ const Deck = ({
               </span>
               saved.
             </p>
-            <button class="button is-primary" onClick={() => handleDownload()}>
-              <span class="icon">
-                <Download />
-              </span>
-              <span>Export to Anki</span>
-            </button>
+            {/* if there's any kanji or phrases in the deck then show the button */}
+            {(deck.kanjis.length > 0 || deck.phrases.length > 0) && (
+              <button
+                class="button is-primary"
+                onClick={() => handleDownload()}
+              >
+                <span class="icon">
+                  <Download />
+                </span>
+                <span>Export to Anki</span>
+              </button>
+            )}
           </div>
         </div>
         <footer className="card-footer">

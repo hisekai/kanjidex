@@ -1,33 +1,41 @@
 import Papa from "papaparse";
 
 // create and download a cvs file for Anki
-export const getCVS = (deckTitle, kanjis, phrases) => {
-  const fields = ["Japanese", "Meaning"];
+export const getCVS = (kanjis, phrases) => {
+  const fields = ["Japanese", "Details"];
   let dataArray = [];
-  kanjis.forEach((kanji) => {
-    dataArray.push({
-      Japanese: `<h1>${kanji.kanji.query} </h1>`,
-      Meaning: `<h2>Meaning: ${kanji.kanji.meaning}</h2> <h4>JLPT: ${
-        kanji.kanji.jlptLevel
-      } </h4> <h4>Strokes: ${
-        kanji.kanji.strokeCount
-      } </h4> <h4> Parts: ${kanji.kanji.parts.join(", ")}  </h4> <h4>Radical: ${
-        kanji.kanji.radical.symbol
-      } </h4>`,
+  kanjis.length > 0 &&
+    kanjis.forEach((kanji) => {
+      dataArray.push({
+        Japanese: `<p style='font-size:60px;'>${kanji.kanji.query} </p>`,
+        Details: `<h2>Meaning: ${kanji.kanji.meaning}</h2> <h4>JLPT: ${
+          kanji.kanji.jlptLevel
+        } </h4> <h4>Strokes: ${
+          kanji.kanji.strokeCount
+        } </h4> <h4> Parts: ${kanji.kanji.parts.join(
+          ", "
+        )}  </h4> <h4>Radical: ${kanji.kanji.radical.symbol} </h4>`,
+      });
     });
-  });
 
-  phrases.forEach((phrase) => {
-    console.log(phrase);
-    dataArray.push({
-      Japanese: `<h1>${phrase.japanese[0].word}</h1> <h2>${phrase.japanese[0].reading}</h2>`,
-      Meaning: `<h2>${phrase.senses.map((sense) =>
-        sense.english_definitions.join(", ")
-      )}</h2> <h4>${phrase.senses.map((sense) =>
-        sense.parts_of_speech.join(" ")
-      )}</h4>`,
+  phrases.length > 0 &&
+    phrases.forEach((phrase) => {
+      dataArray.push({
+        Japanese: `<p style='font-size:60px;'>${
+          phrase.japanese[0].word
+        }</p> <h2 style="color:DarkSlateGrey">${
+          phrase.japanese[0].reading ? phrase.japanese[0].reading : ""
+        }</h2>`,
+        Details: phrase.senses
+          .map(
+            (sense) =>
+              `<h5 style="color:grey">${sense.parts_of_speech.join(
+                " "
+              )}</h5> \n <h2>${sense.english_definitions.join(", ")}</h2>`
+          )
+          .join(" "),
+      });
     });
-  });
   let csv = Papa.unparse(
     {
       fields,
@@ -47,7 +55,7 @@ export const getCVS = (deckTitle, kanjis, phrases) => {
     let hiddenElement = document.createElement("a");
     hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
     hiddenElement.target = "_blank";
-    hiddenElement.download = `${deckTitle}.cvs`;
+    hiddenElement.download = `kanjidex-${new Date().getTime()}.cvs`;
     hiddenElement.click();
   }
   download_csv();

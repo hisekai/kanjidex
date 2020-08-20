@@ -13,7 +13,6 @@ export const getEnglish = async (query) => {
   try {
     if (kanjiAliveRes.ok) {
       const data = await kanjiAliveRes.json();
-      console.log(data);
       return data;
     } else {
       console.error("Server response: ", kanjiAliveRes.status);

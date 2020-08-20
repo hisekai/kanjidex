@@ -9,7 +9,7 @@ const About = () => {
   const chromeVersion =
     process.env.NODE_ENV === "production"
       ? chrome.runtime.getManifest().version
-      : "3.0";
+      : "3.1";
   return (
     <div className="Help">
       <div className="container">
