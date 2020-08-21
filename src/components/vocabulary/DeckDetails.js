@@ -6,6 +6,14 @@ import CurrentKanji from "./CurrentKanji";
 import CurrentPhrase from "./CurrentPhrase";
 import ListOfKanjis from "./ListOfKanjis";
 import ListOfPhrases from "./ListOfPhrases";
+import styled from "styled-components";
+
+const StyledDetails = styled.div`
+  .list {
+    max-height: 550px;
+    overflow-y: scroll;
+  }
+`;
 
 const DeckDetails = (props) => {
   const { decks, dispatch } = useContext(VocabContext);
@@ -46,7 +54,7 @@ const DeckDetails = (props) => {
       </h4>
     </div>
   ) : (
-    <div className="Deck-details container">
+    <StyledDetails className="Deck-details container">
       <h2 className="title has-text-centered">
         <strong>Deck: </strong>
         {deck.title}
@@ -137,7 +145,7 @@ const DeckDetails = (props) => {
           )}
         </div>
       </div>
-    </div>
+    </StyledDetails>
   );
 };
 

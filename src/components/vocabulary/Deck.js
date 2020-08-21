@@ -8,6 +8,9 @@ const StyledDeck = styled.div`
   .card-header {
     min-height: 64px;
   }
+  .card-content {
+    min-height: 130px;
+  }
   button.is-text,
   a.is-text {
     text-decoration: none;

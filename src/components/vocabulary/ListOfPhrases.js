@@ -67,8 +67,8 @@ const ListOfPhrases = ({
       no words found
     </div>
   ) : (
-    <div>
-      {list}{" "}
+    <>
+      <div className="list">{list} </div>
       <div className="panel-block">
         <button
           className="button is-danger is-outlined is-fullwidth"
@@ -82,7 +82,7 @@ const ListOfPhrases = ({
           Remove All Words
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -58,8 +58,8 @@ const ListOfKanjis = ({
       no kanji characters found
     </div>
   ) : (
-    <div>
-      {list}{" "}
+    <>
+      <div className="list">{list} </div>
       <div className="panel-block">
         <button
           className="button is-danger is-outlined is-fullwidth"
@@ -73,7 +73,7 @@ const ListOfKanjis = ({
           Remove All Kanji
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -103,7 +103,10 @@ const Kanji = ({ kanji }) => {
               {kanji.strokeOrderDiagramUri && (
                 <img
                   className="stroke-order"
-                  src={kanji.strokeOrderDiagramUri}
+                  src={kanji.strokeOrderDiagramUri.replace(
+                    /^https:\/\//i,
+                    "http://"
+                  )}
                   alt={kanji.meaning}
                 />
               )}
@@ -113,7 +116,10 @@ const Kanji = ({ kanji }) => {
               <div className="modal-content">
                 <p className="image is-fullwidth">
                   <img
-                    src={kanji.strokeOrderDiagramUri}
+                    src={kanji.strokeOrderDiagramUri.replace(
+                      /^https:\/\//i,
+                      "http://"
+                    )}
                     alt={kanji.meaning}
                     onClick={() => setIsVisible(false)}
                   />
