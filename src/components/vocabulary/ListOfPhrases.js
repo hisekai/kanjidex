@@ -32,7 +32,9 @@ const ListOfPhrases = ({
           >
             <p style={{ textAlign: "left" }}>
               <strong>
-                {phrase.japanese[0].word && phrase.japanese[0].word}
+                {phrase.japanese[0].word
+                  ? phrase.japanese[0].word
+                  : phrase.japanese[0].reading}
               </strong>{" "}
               <span style={{ marginLeft: "10px" }}>{def}</span>
             </p>
