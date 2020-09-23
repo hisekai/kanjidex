@@ -35,6 +35,12 @@ const StyledRadical = styled.div`
   button {
     border-radius: 50%;
   }
+  .radicalAlt-symbol {
+    display: block;
+    text-align: center;
+    font-size: 60px;
+    margin: 30px auto 20px auto;
+  }
   @media (min-width: 400px) {
     .title.is-5 {
       margin-bottom: 20px;
@@ -46,7 +52,10 @@ const StyledRadical = styled.div`
 `;
 
 const Radical = ({ radical, radicalAlt }) => {
-  const radicalAnimationNum = radical.animation.length - 1;
+  const radicalAnimationNum =
+    radical != null || radical != undefined
+      ? radical.animation.length - 1
+      : null;
   const [count, setCount] = useState(radicalAnimationNum);
   const handleClick = (operation) => {
     if (count === radical.animation.length - 1 && operation + 1) {
@@ -57,107 +66,122 @@ const Radical = ({ radical, radicalAlt }) => {
       setCount(count + operation);
     }
   };
-  return radical ? (
-    <StyledRadical className="Radical">
-      <div className="Radical-slider">
-        {radical.animation ? (
-          <img src={radical.animation[count]} alt="" />
-        ) : (
-          radicalAlt.symbol
+  console.log(radicalAlt);
+  return radical || radicalAlt ? (
+    radical != null || radical != undefined ? (
+      <StyledRadical className="Radical">
+        <div className="Radical-slider">
+          {radical.animation ? (
+            <img src={radical.animation[count]} alt="" />
+          ) : (
+            radicalAlt.symbol
+          )}
+          {radical.animation && (
+            <div className="field has-addons">
+              <p className="control ">
+                <button
+                  className="button is-medium is-primary is-outlined"
+                  onClick={() => handleClick(-1)}
+                >
+                  <span className="icon">
+                    <ArrowLeft />
+                  </span>
+                </button>
+              </p>
+              <p className="control">
+                <button
+                  className="button is-medium is-primary is-outlined"
+                  onClick={() => handleClick(+1)}
+                >
+                  <span className="icon">
+                    <ArrowRight />
+                  </span>
+                </button>
+              </p>
+            </div>
+          )}
+        </div>
+        <h2 className="title is-5" style={{ textAlign: "center" }}>
+          {radical.meaning.english}
+        </h2>
+        {radicalAlt && (
+          <Level>
+            <div className="level-left">
+              <div className="level-item">
+                <p>
+                  <strong>Forms: </strong>
+                  {radicalAlt && radicalAlt.forms
+                    ? radicalAlt.forms.map((form) => form).join(", ")
+                    : "Not found"}
+                </p>
+              </div>
+            </div>
+            <div className="level-right">
+              <div className="level-item">
+                <p>
+                  <strong>Symbol: </strong>{" "}
+                  {radicalAlt && radicalAlt.symbol
+                    ? radicalAlt.symbol
+                    : "Not found"}
+                </p>
+              </div>
+            </div>
+          </Level>
         )}
-        {radical.animation && (
-          <div className="field has-addons">
-            <p className="control ">
-              <button
-                className="button is-medium is-primary is-outlined"
-                onClick={() => handleClick(-1)}
-              >
-                <span className="icon">
-                  <ArrowLeft />
-                </span>
-              </button>
-            </p>
-            <p className="control">
-              <button
-                className="button is-medium is-primary is-outlined"
-                onClick={() => handleClick(+1)}
-              >
-                <span className="icon">
-                  <ArrowRight />
-                </span>
-              </button>
+        <Level>
+          <div className="level-item">
+            <p>
+              <strong>Hiragana: </strong> {radical.name.hiragana}
             </p>
           </div>
-        )}
-      </div>
-      <h2 className="title is-5" style={{ textAlign: "center" }}>
-        {radical.meaning.english}
-      </h2>
-      {radicalAlt && (
+        </Level>
+        <Level>
+          <div className="level-item">
+            <p>
+              <strong>Romaji: </strong>
+              {radical.name.romaji}
+            </p>
+          </div>
+        </Level>
         <Level>
           <div className="level-left">
             <div className="level-item">
               <p>
-                <strong>Forms: </strong>
-                {radicalAlt && radicalAlt.forms
-                  ? radicalAlt.forms.map((form) => form).join(", ")
-                  : "Not found"}
+                <strong>Strokes: </strong>
+                {radical.strokes}
               </p>
             </div>
           </div>
           <div className="level-right">
             <div className="level-item">
               <p>
-                <strong>Symbol: </strong>{" "}
-                {radicalAlt && radicalAlt.symbol
-                  ? radicalAlt.symbol
-                  : "Not found"}
+                <strong>Position: </strong>{" "}
+                {radical.position.icon ? (
+                  <img
+                    src={radical.position.icon}
+                    alt={radical.meaning.english}
+                  />
+                ) : (
+                  "Not found"
+                )}
               </p>
             </div>
           </div>
         </Level>
-      )}
-      <Level>
-        <div className="level-item">
-          <p>
-            <strong>Hiragana: </strong> {radical.name.hiragana}
-          </p>
-        </div>
-      </Level>
-      <Level>
-        <div className="level-item">
-          <p>
-            <strong>Romaji: </strong>
-            {radical.name.romaji}
-          </p>
-        </div>
-      </Level>
-      <Level>
-        <div className="level-left">
-          <div className="level-item">
-            <p>
-              <strong>Strokes: </strong>
-              {radical.strokes}
-            </p>
+      </StyledRadical>
+    ) : (
+      <StyledRadical>
+        <div className="Radical-slider">
+          <div className="radicalAlt-symbol">{radicalAlt.symbol}</div>
+          <h2 className="title is-5" style={{ textAlign: "center" }}>
+            {radicalAlt.meaning}
+          </h2>
+          <div style={{ textAlign: "center" }}>
+            <p>Sorry! No other information about this radical was found.</p>
           </div>
         </div>
-        <div className="level-right">
-          <div className="level-item">
-            <p>
-              <strong>Position: </strong>{" "}
-              {radical.position.icon ? (
-                <img
-                  src={radical.position.icon}
-                  alt={radical.meaning.english}
-                />
-              ) : (
-                "Not found"
-              )}
-            </p>
-          </div>
-        </div>
-      </Level>
-    </StyledRadical>
+      </StyledRadical>
+    )
   ) : (
     <StyledRadical>
       <div className="has-text-centered">
