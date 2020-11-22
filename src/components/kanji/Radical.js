@@ -171,13 +171,17 @@ const Radical = ({ radical, radicalAlt }) => {
       </StyledRadical>
     ) : (
       <StyledRadical>
+        {console.log(radicalAlt)}
         <div className="Radical-slider">
           <div className="radicalAlt-symbol">{radicalAlt.symbol}</div>
           <h2 className="title is-5" style={{ textAlign: "center" }}>
             {radicalAlt.meaning}
           </h2>
-          <div style={{ textAlign: "center" }}>
-            <p>Sorry! No other information about this radical was found.</p>
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <h4 className="title is-4">Sorry!</h4>
+            <p class="subtitle is-6">
+              No other information about <br /> this radical was found.
+            </p>
           </div>
         </div>
       </StyledRadical>
