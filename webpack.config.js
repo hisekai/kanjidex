@@ -32,14 +32,6 @@ module.exports = {
         to: "static/tooltip/tippy.css",
       },
       { from: "src/themes/kanjidex.css", to: "static/tooltip/kanjidex.css" },
-      {
-        from: "node_modules/tippy.js/dist/tippy-bundle.umd.js",
-        to: "static/tooltip",
-      },
-      {
-        from: "node_modules/@popperjs/core/dist/umd/popper.min.js",
-        to: "static/tooltip",
-      },
     ]),
   ],
   performance: {
