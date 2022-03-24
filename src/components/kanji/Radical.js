@@ -66,7 +66,6 @@ const Radical = ({ radical, radicalAlt }) => {
       setCount(count + operation);
     }
   };
-  console.log(radicalAlt);
   return radical || radicalAlt ? (
     radical != null || radical != undefined ? (
       <StyledRadical className="Radical">

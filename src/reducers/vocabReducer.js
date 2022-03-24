@@ -70,6 +70,81 @@ export const vocabReducer = (state, action) => {
         }
         return deck;
       });
+    case "ADD_KANJI_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            kanjis: deck.kanjis.map((kanji) => {
+              if (kanji.kanji.query === action.kanji) {
+                // if there aren't any notes, create a notes array
+                if (!kanji.kanji.notes) {
+                  kanji.kanji.notes = [
+                    {
+                      text: action.note.text,
+                      img: action.note.img,
+                      id: uuid(),
+                    },
+                  ];
+                } else {
+                  // otherwise push note to the array
+                  kanji.kanji.notes.push({
+                    text: action.note.text,
+                    img: action.note.img,
+                    id: uuid(),
+                  });
+                }
+              }
+            }),
+          };
+        }
+        return deck;
+      });
+    case "REMOVE_KANJI_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            kanjis: deck.kanjis.map((kanji) => {
+              if (kanji.kanji.query === action.kanji) {
+                if (kanji.kanji.notes) {
+                  kanji.kanji.notes = kanji.kanji.notes.filter(
+                    (note) => note.id !== action.note.id
+                  );
+                }
+              }
+            }),
+          };
+        }
+        return deck;
+      });
+
+    case "UPDATE_KANJI_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            kanjis: deck.kanjis.map((kanji) => {
+              if (kanji.kanji.query === action.kanji) {
+                if (kanji.kanji.notes) {
+                  kanji.kanji.notes = kanji.kanji.notes.map((note) => {
+                    if (note.id === action.note.id) {
+                      return {
+                        ...note,
+                        text: action.note.text,
+                        img: action.note.img,
+                      };
+                    }
+                    return note;
+                  });
+                }
+              }
+            }),
+          };
+        }
+        return deck;
+      });
+
     case "ADD_PHRASE":
       return state.map((deck) => {
         if (deck.id === action.deck.id) {
@@ -86,7 +161,6 @@ export const vocabReducer = (state, action) => {
           } else {
             alreadySavedNotification("phrase");
           }
-          return deck;
         }
         return deck;
       });

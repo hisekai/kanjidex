@@ -121,6 +121,7 @@ const DeckDetails = (props) => {
                 radical={currentKanji.radical}
                 radicalAlt={currentKanji.kanji.radical}
                 examples={currentKanji.examples}
+                deckId={deckId}
               />
             ) : (
               tab === "phrase" &&

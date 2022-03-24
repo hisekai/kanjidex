@@ -12,12 +12,7 @@ const StyledKanji = styled.div`
     width: 100%;
   }
   .stroke-order:hover {
-    cursor: -webkit-zoom-in;
-    cursor: zoom-in;
-  }
-  .modal img {
-    cursor: -webkit-zoom-out;
-    cursor: zoom-out;
+    cursor: pointer;
   }
 `;
 
