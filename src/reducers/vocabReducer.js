@@ -76,7 +76,7 @@ export const vocabReducer = (state, action) => {
           const res = {
             ...deck,
             kanjis: deck.kanjis.map((kanji) => {
-              if (kanji.kanji.query === action.kanji) {
+              if (kanji.kanji.query === action.query) {
                 // if there aren't any notes, create a notes array
                 if (!kanji.kanji.notes) {
                   kanji.kanji.notes = [
@@ -106,7 +106,7 @@ export const vocabReducer = (state, action) => {
           const res = {
             ...deck,
             kanjis: deck.kanjis.map((kanji) => {
-              if (kanji.kanji.query === action.kanji) {
+              if (kanji.kanji.query === action.query) {
                 if (kanji.kanji.notes) {
                   kanji.kanji.notes = kanji.kanji.notes.filter(
                     (note) => note.id !== action.note.id
@@ -125,7 +125,7 @@ export const vocabReducer = (state, action) => {
           const res = {
             ...deck,
             kanjis: deck.kanjis.map((kanji) => {
-              if (kanji.kanji.query === action.kanji) {
+              if (kanji.kanji.query === action.query) {
                 if (kanji.kanji.notes) {
                   kanji.kanji.notes = kanji.kanji.notes.map((note) => {
                     if (note.id === action.note.id) {
@@ -184,6 +184,80 @@ export const vocabReducer = (state, action) => {
           return {
             ...deck,
             phrases: [],
+          };
+        }
+        return deck;
+      });
+    case "ADD_PHRASE_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            phrases: deck.phrases.map((phrase) => {
+              if (phrase.slug === action.query) {
+                // if there aren't any notes, create a notes array
+                if (!phrase.notes) {
+                  phrase.notes = [
+                    {
+                      text: action.note.text,
+                      img: action.note.img,
+                      id: uuid(),
+                    },
+                  ];
+                } else {
+                  // otherwise push note to the array
+                  phrase.notes.push({
+                    text: action.note.text,
+                    img: action.note.img,
+                    id: uuid(),
+                  });
+                }
+              }
+            }),
+          };
+        }
+        return deck;
+      });
+    case "REMOVE_PHRASE_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            phrases: deck.phrases.map((phrase) => {
+              if (phrase.slug === action.query) {
+                if (phrase.notes) {
+                  phrase.notes = phrase.notes.filter(
+                    (note) => note.id !== action.note.id
+                  );
+                }
+              }
+            }),
+          };
+        }
+        return deck;
+      });
+
+    case "UPDATE_PHRASE_NOTE":
+      return state.map((deck) => {
+        if (deck.id === action.deckId) {
+          const res = {
+            ...deck,
+            phrases: deck.phrases.map((phrase) => {
+              if (phrase.slug === action.query) {
+                if (phrase.notes) {
+                  phrase.notes = phrase.notes.map((note) => {
+                    if (note.id === action.note.id) {
+                      return {
+                        ...note,
+                        text: action.note.text,
+                        img: action.note.img,
+                      };
+                    }
+                    return note;
+                  });
+                }
+              }
+            }),
           };
         }
         return deck;

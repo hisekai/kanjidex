@@ -125,7 +125,9 @@ const DeckDetails = (props) => {
               />
             ) : (
               tab === "phrase" &&
-              currentPhrase && <CurrentPhrase phrase={currentPhrase} />
+              currentPhrase && (
+                <CurrentPhrase phrase={currentPhrase} deckId={deckId} />
+              )
             )
           ) : (
             <div className="has-text-centered">

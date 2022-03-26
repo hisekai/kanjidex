@@ -3,34 +3,33 @@ import { VocabContext } from "../../contexts/VocabContext";
 import Note from "./Note";
 import NoteForm from "./NoteForm";
 
-// TODO: add the notes to the phrases as well
 // TODO: make sure the export for anki containes notes as well
 // TODO: create a help section for the new feature
 
-const Notes = ({ kanji, deckId }) => {
+const Notes = ({ current, deckId, type }) => {
   const { dispatch } = useContext(VocabContext);
   const addNote = (note) => {
     dispatch({
-      type: "ADD_KANJI_NOTE",
+      type: `ADD_${type}_NOTE`,
       note,
       deckId,
-      kanji: kanji.query,
+      query: type === "KANJI" ? current.query : current.slug,
     });
   };
   const removeNote = (note) => {
     dispatch({
-      type: "REMOVE_KANJI_NOTE",
+      type: `REMOVE_${type}_NOTE`,
       note,
       deckId,
-      kanji: kanji.query,
+      query: type === "KANJI" ? current.query : current.slug,
     });
   };
   const updateNote = (note) => {
     dispatch({
-      type: "UPDATE_KANJI_NOTE",
+      type: `UPDATE_${type}_NOTE`,
       note,
       deckId,
-      kanji: kanji.query,
+      query: type === "KANJI" ? current.query : current.slug,
     });
   };
   return (
@@ -43,10 +42,10 @@ const Notes = ({ kanji, deckId }) => {
       <br />
       <NoteForm addNote={addNote} />
       <hr />
-      {!kanji.notes && "You currently don't have any notes for this kanji."}
+      {!current.notes && "You currently don't have any notes."}
       <div className="columns is-multiline">
-        {kanji.notes &&
-          kanji.notes.map((note) => (
+        {current.notes &&
+          current.notes.map((note) => (
             <Note note={note} removeNote={removeNote} updateNote={updateNote} />
           ))}
       </div>

@@ -36,7 +36,7 @@ const CurrentKanji = ({ kanji, radical, radicalAlt, examples, deckId }) => {
         </div>
       </div>
       <div className="column">
-        <Notes kanji={kanji} deckId={deckId} />
+        <Notes current={kanji} deckId={deckId} type="KANJI" />
       </div>
     </>
   );
