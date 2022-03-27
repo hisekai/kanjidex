@@ -63,7 +63,8 @@ function showInfo(kanji) {
 
 // when Kanjidex gets message from background about the highlighted kanji
 // display the tooltip with kanji details
-chrome.extension.onMessage.addListener(function (message) {
+
+chrome.runtime.onMessage.addListener(function (message) {
   if (message.action === "showKanji") {
     showInfo(message.kanji);
   }
