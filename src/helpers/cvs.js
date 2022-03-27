@@ -1,5 +1,16 @@
 import Papa from "papaparse";
 
+const notes = (notes) => {
+  let res = "";
+  notes.map((note) => {
+    if (note.img) {
+      res += `<img src=${note.img} />`;
+    }
+    res += `<p>${note.text}</p>`;
+  });
+  return res;
+};
+
 // create and download a cvs file for Anki
 export const getCVS = (kanjis, phrases) => {
   const fields = ["Japanese", "Details"];
@@ -14,7 +25,9 @@ export const getCVS = (kanjis, phrases) => {
           kanji.kanji.strokeCount
         } </h4> <h4> Parts: ${kanji.kanji.parts.join(
           ", "
-        )}  </h4> <h4>Radical: ${kanji.kanji.radical.symbol} </h4>`,
+        )}  </h4> <h4>Radical: ${kanji.kanji.radical.symbol} </h4> ${notes(
+          kanji.kanji.notes
+        )} `,
       });
     });
 
@@ -26,14 +39,17 @@ export const getCVS = (kanjis, phrases) => {
         }</p> <h2 style="color:DarkSlateGrey">${
           phrase.japanese[0].reading ? phrase.japanese[0].reading : ""
         }</h2>`,
-        Details: phrase.senses
-          .map(
-            (sense) =>
-              `<h5 style="color:grey">${sense.parts_of_speech.join(
-                " "
-              )}</h5> \n <h2>${sense.english_definitions.join(", ")}</h2>`
-          )
-          .join(" "),
+        Details:
+          phrase.senses &&
+          phrase.senses
+            .map(
+              (sense) =>
+                `<h5 style="color:grey">${sense.parts_of_speech.join(
+                  " "
+                )}</h5> \n <h2>${sense.english_definitions.join(", ")}</h2>`
+            )
+            .concat(phrase.notes && notes(phrase.notes))
+            .join(" "),
       });
     });
   let csv = Papa.unparse(
