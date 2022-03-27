@@ -13,6 +13,7 @@ import {
   DeletingKanji,
   SavingWord,
   DeletingWord,
+  AddingNotes,
   ExportingToAnki,
 } from "./help/Vocabulary";
 import { QuickSearch } from "./help/QuickSearch";
@@ -103,6 +104,7 @@ const Help = (props) => {
                         <Tab className="has-text-grey">Deleting a kanji</Tab>
                         <Tab className="has-text-grey">Saving a word</Tab>
                         <Tab className="has-text-grey">Deleting a word</Tab>
+                        <Tab className="has-text-grey">Adding Notes</Tab>
                         <Tab className="has-text-grey">Exporting to Anki</Tab>
                         <header className="Help-topic-header">
                           <span className="icon has-text-grey-light">
@@ -161,6 +163,9 @@ const Help = (props) => {
                 </TabPanel>
                 <TabPanel>
                   <DeletingWord />
+                </TabPanel>
+                <TabPanel>
+                  <AddingNotes />
                 </TabPanel>
                 <TabPanel>
                   <ExportingToAnki />

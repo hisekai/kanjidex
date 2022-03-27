@@ -3,8 +3,6 @@ import { VocabContext } from "../../contexts/VocabContext";
 import Note from "./Note";
 import NoteForm from "./NoteForm";
 
-// TODO: create a help section for the new feature
-
 const Notes = ({ current, deckId, type }) => {
   const { dispatch } = useContext(VocabContext);
   const addNote = (note) => {

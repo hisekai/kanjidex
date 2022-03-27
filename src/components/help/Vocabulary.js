@@ -173,6 +173,33 @@ const DeletingWord = () => {
   );
 };
 
+const AddingNotes = () => {
+  return (
+    <div>
+      <h3 className="title">Adding Notes</h3>
+      <p>
+        Notes serve as an extremely important aid in study, to help you memorize
+        better and even add additional information when the one provided is not
+        sufficient. Thanks to a suggestion from a user, notes have been added to
+        Kanjidex in the Vocabulary section to both kanji characters and words.
+      </p>
+      <p>
+        There is a form for adding notes under each kanji and word. The notes
+        are required to have text but you may also include an external link to
+        an image on the internet.
+      </p>
+      <p>
+        Once the note has been created, it can be easily edited and deleted. You
+        can also add as many notes as you like.
+      </p>
+      <p>
+        Due to their importance, the notes will also be included in the Anki
+        export file.
+      </p>
+    </div>
+  );
+};
+
 const ExportingToAnki = () => {
   return (
     <div>
@@ -229,5 +256,6 @@ export {
   DeletingKanji,
   SavingWord,
   DeletingWord,
+  AddingNotes,
   ExportingToAnki,
 };
