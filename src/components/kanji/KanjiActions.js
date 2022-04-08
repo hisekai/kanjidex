@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import CreatableSelect from "react-select/creatable";
 import { ArrowLeft, BookOpen } from "react-feather";
@@ -60,6 +60,7 @@ const KanjiActions = ({ handleView, kanji }) => {
     return { value: deck.id, label: deck.title };
   });
   const [option, setOption] = useState(null);
+  const [value, setValue] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const newDeckId = uuid();
@@ -72,6 +73,7 @@ const KanjiActions = ({ handleView, kanji }) => {
         type: "ADD_KANJI",
         deck: { id: newDeckId, kanji },
       });
+      setValue("");
     } else {
       dispatch({
         type: "ADD_KANJI",
@@ -82,9 +84,18 @@ const KanjiActions = ({ handleView, kanji }) => {
   const handleInputChange = (inputValue) => {
     if (inputValue) {
       setOption({ label: inputValue, value: null });
+      setValue(inputValue);
     }
   };
-  useEffect(() => {}, [decks, kanji]);
+  useEffect(() => {
+    if (option) {
+      setValue(option.label);
+    } else if (options.length) {
+      setValue(options[0].label);
+    } else {
+      setValue("");
+    }
+  });
   return (
     <StyledKanjiActions className="actions">
       <button
@@ -103,12 +114,24 @@ const KanjiActions = ({ handleView, kanji }) => {
               minWidth: "180px",
             }}
           >
-            <CreatableSelect
-              isClearable
-              onChange={(option) => setOption(option)}
-              onInputChange={(e) => handleInputChange(e)}
-              options={options}
-            />
+            {!value && (
+              <CreatableSelect
+                isClearable
+                onChange={(option) => setOption(option)}
+                onInputChange={(e) => handleInputChange(e)}
+                options={options}
+                value={value}
+              />
+            )}
+            {value && (
+              <CreatableSelect
+                isClearable
+                onChange={(option) => setOption(option)}
+                onInputChange={(e) => handleInputChange(e)}
+                options={options}
+                defaultValue={value}
+              />
+            )}
           </div>
           <div className="control">
             <button type="submit" className="button is-primary">
