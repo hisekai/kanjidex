@@ -9,6 +9,7 @@ const NoteForm = ({ addNote }) => {
     if (note) {
       addNote({ text: note, img: image });
       setNote("");
+      setImage("");
     }
   };
   return (

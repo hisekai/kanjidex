@@ -25,9 +25,9 @@ export const getCVS = (kanjis, phrases) => {
           kanji.kanji.strokeCount
         } </h4> <h4> Parts: ${kanji.kanji.parts.join(
           ", "
-        )}  </h4> <h4>Radical: ${kanji.kanji.radical.symbol} </h4> ${notes(
-          kanji.kanji.notes
-        )} `,
+        )}  </h4> <h4>Radical: ${kanji.kanji.radical.symbol} </h4> ${
+          kanji.kanji.notes ? notes(kanji.kanji.notes) : ""
+        } `,
       });
     });
 
@@ -35,7 +35,7 @@ export const getCVS = (kanjis, phrases) => {
     phrases.forEach((phrase) => {
       dataArray.push({
         Japanese: `<p style='font-size:60px;'>${
-          phrase.japanese[0].word
+          phrase.japanese[0].word ? phrase.japanese[0].word : ""
         }</p> <h2 style="color:DarkSlateGrey">${
           phrase.japanese[0].reading ? phrase.japanese[0].reading : ""
         }</h2>`,
@@ -48,7 +48,7 @@ export const getCVS = (kanjis, phrases) => {
                   " "
                 )}</h5> \n <h2>${sense.english_definitions.join(", ")}</h2>`
             )
-            .concat(phrase.notes && notes(phrase.notes))
+            .concat(phrase.notes ? notes(phrase.notes) : "")
             .join(" "),
       });
     });
