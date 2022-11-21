@@ -16,7 +16,7 @@
     "react-feather": "^2.0.8",
     "react-kawaii": "^0.14.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.1.1",
+    "react-scripts": "5.0.1",
     "react-select": "^3.1.0",
     "react-tabs": "^3.1.1",
     "request-promise": "^4.2.6",
